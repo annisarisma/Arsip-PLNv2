@@ -1,0 +1,181 @@
+@extends('layouts.app')
+@section('content')
+    <div class="home-content">
+        <div class="content-archive">
+            <div class="content-header">
+                <h4>Arsip
+                    <h6><span class="badge rounded-pill">
+                            {{ strtoupper($title) }}
+                        </span>
+                        <h6>
+                </h4>
+            </div>
+            <div class="content-row row">
+
+                <form role="search" class="col-5">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                @if ($title == "ADM & Keuangan")
+                <a class="btn btn-create col-2" href="/archive/archive-create/1"><i
+                        class="fa-solid fa-layer-group icon"></i>Tambah Arsip</a>
+                @elseif ($title == "Perizinan & Pertanahan")
+                <a class="btn btn-create col-2" href="/archive/archive-create/2"><i
+                        class="fa-solid fa-layer-group icon"></i>Tambah Arsip</a>
+                @elseif ($title == "K3L")
+                <a class="btn btn-create col-2" href="/archive/archive-create/3"><i
+                        class="fa-solid fa-layer-group icon"></i>Tambah Arsip</a>
+                @else
+                <a class="btn btn-create col-2" href="/archive/archive-create/4"><i
+                        class="fa-solid fa-layer-group icon"></i>Tambah Arsip</a>
+                @endif
+
+                <button id="buttonExport" class="btn btn-primary col-2"><i class="fa-solid fa-file-export"></i>Export to Excel</button>
+
+                <div class="btn-group col-2">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-filter"></i>
+                        Dropdown Filter
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-start">
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <table id="example" class="table table-striped table-bordered table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Detail</th>
+                        <th>Nama Bidang</th>
+                        <th>Nama Arsip</th>
+                        <th>Kategori</th>
+                        <th>Deskripsi</th>
+                        <th>File</th>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $i = 1;
+                    @endphp
+                    @foreach ($archive as $item)
+                    <tr>
+                        <td class="no">{{ $i }}</td>
+                        <td class="collapsible">
+                            <button>
+                                <i class="fa-solid fa-caret-down action-more"></i>
+                            </button>
+                        </td>
+                        <td class="nama_bidang">{{$item->Unit->unit_name}}</td>
+                        <td class="kategori hidden-wrap">{{$item->archive_name}}</td>
+                        <td class="nama_proyek hidden-wrap">{{$item->Category->category_name}}</td>
+                        <td class="deskripsi hidden-wrap" data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-custom-class="custom-tooltip" data-bs-title={{$item->description}}>
+                            {{$item->description}}
+                        </td>
+                        <td class="file"><i class="fa-solid fa-file"></i>{{$item->Files->count()}}</td>
+                        <td class="username">{{$item->User->username}}</td>
+                        @if ($item->completeness_status == "Lengkap")
+                        <td class="status">
+                            <i class="fa-solid fa-check status-success"></i>{{$item->completeness_status}}
+                        </td>
+                        @else
+                        <td class="status">
+                            <i class="fa-solid fa-hourglass-half status-warning"></i>{{$item->completeness_status}}
+                        </td>
+                        @endif
+                        <td class="aksi">
+                            <button>
+                                <a href="/archive/archive-edit/{{ $item->id }}/{{ $item->unit_id}}">
+                                    <i class="fa-solid fa-pen-to-square action-edit"></i>
+                                </a>
+                            </button>
+                            <button data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->id}}">
+                                <i class="fa-solid fa-trash action-danger"></i>
+                            </button>
+                            <button>
+                                <i class="fa-solid fa-print action-warning"></i>
+                            </button>
+                            @if ($item->completeness_status == "Belum Lengkap")
+                                <button data-bs-toggle="modal" data-bs-target="#modalKeterangan{{$item->id}}">
+                                    <i class="fa-solid fa-circle-info action-primary"></i>
+                                </button>
+                            @endif
+                        </td>
+                        @php
+                            $i = $i + 1;
+                        @endphp
+                    </tr>
+
+                    {{-- Expand File --}}
+                    <tr class="expand" id="expand">
+                        <td class="row-expand" colspan="10">
+                            <p>{{$item->Files->count()}} File Diunggah: </p>
+                            @foreach($item->Files as $file)
+                            <div class="container-expand">
+                                <div class="content-expand">
+                                    <i class="fa-solid fa-file"></i>
+                                    <span>{{$file->file_name}}</span>
+                                </div>
+                                <div class="button">
+                                    <i class="fa-solid fa-eye action-warning"></i>
+                                    <i class="fa-solid fa-print action-warning"></i>
+                                </div>
+                            </div>
+                            @endforeach
+                            <em>Dibuat Pada: {{$item->created_at}} // Terakhir Diubah Pada: {{$item->updated_at}} </em>
+                        </td>
+                    </tr>
+
+                    <!-- Modal Alert -->
+                    <div class="modal fade modal-sm" id="exampleModal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-alert modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-close">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_bc4ugzhr.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
+                                    <h6>Hapus Arsip</h6>
+                                    <p>Anda yakin akan menghapus arsip {{$item->archive_name}}?</p>
+                                </div>
+                                <div class="modal-button d-flex">
+                                    <button type="button" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal">Batal</button>
+                                    <form action="/archive/archive-delete/{{ $item->id }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Keterangan -->
+                    <div class="modal fade modal-md" id="modalKeterangan{{$item->id}}" tabindex="-1" aria-labelledby="modalKeterangan"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-keterangan modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1>Keterangan Arsip</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{$item->additional_info}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endsection

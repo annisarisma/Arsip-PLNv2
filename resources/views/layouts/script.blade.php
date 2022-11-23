@@ -1,0 +1,524 @@
+<!-- JQuery Ajax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('/Library/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+</script>
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- Datatables -->
+<script src="{{ asset('/Library/DataTables/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/Library/DataTables/js/dataTables.bootstrap5.min.js') }}"></script>
+<!-- ExportToExcel -->
+<script src="{{ asset('/Library/ExportToExcel/jquery.table2excel.js') }}"></script>
+<!-- Filepond -->
+<script src="{{ asset('/Library/Filepond/filepond.js') }}"></script>
+<script src="{{ asset('/Library/Filepond/filepond.min.js') }}"></script>
+<script src="{{ asset('/Library/Filepond/id-id.js') }}"></script>
+<script src='https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js'></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            "ordering": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            "buttons": ["colvis"],
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
+
+<!-- Modal Unverified -->
+<script type="text/javascript">
+    window.onload = () => {
+        $('#onload').modal('show');
+    }
+</script>
+
+<!-- Light Switch -->
+<script>
+    // Light Switch
+    $('.status').change(function() {
+        if ($(this).is(':checked')) {
+            $(this).parent().siblings('.text').html('Aktif');
+        } else {
+            $(this).parent().siblings('.text').html('Tidak Aktif');
+            if ($('.status:checked').length < 1) {
+                event.preventDefault();
+                $(this).parent().siblings('.text').html('Aktif');
+            }
+
+        }
+    });
+    $('.dashboard').click((event) => {
+        if ($('.dashboard:checked').length < 1) {
+            event.preventDefault();
+            alert('Minimal 1 Banner Aktif!');
+        }
+    });
+    $('.loginregist').click((event) => {
+        if ($('.loginregist:checked').length < 1) {
+            event.preventDefault();
+            alert('Minimal 1 Gambar Aktif!');
+        }
+    });
+    $('input.loginregist').on('change', function() {
+        $('input.loginregist').not(this).prop('checked', false);
+        $('input.loginregist').not(this).parent().siblings('.text').html('Tidak Aktif');
+
+    });
+
+    // //login-regist
+    // var $status_aktif = $('#status_aktif');
+    // var $status_tidak_aktif = $('#status_tidak_aktif');
+    // var $id_banner_aktif = $('#id_banner_aktif');
+    // var $id_banner_tidak_aktif = $('#id_banner_tidak_aktif');
+    // $(document).ready(function() {
+    //     $status_tidak_aktif.on('change', function() {
+    //         var status_tidak_aktif = $(this).val();
+    //         var status_aktif = $status_aktif.val();
+    //         var id_banner_aktif = $id_banner_aktif.val();
+    //         var id_banner_tidak_aktif = $id_banner_tidak_aktif.val();
+    //         if (status_tidak_aktif) {
+    //             $.ajax({
+    //                 url: '/user/manage-banner/edit-status/'+ status_tidak_aktif,
+    //                 type: "POST",
+    //                 data: {
+    //                     id_banner_aktif = id_banner_aktif,
+    //                     id_banner_tidak_aktif = id_banner_tidak_aktif,
+    //                     status_tidak_aktif: status_tidak_aktif,
+    //                     status_aktif: status_aktif,
+    //                     "_token": "{{ csrf_token() }}"
+    //                 }
+    //             });
+    //         }
+    //     });
+    // });
+
+</script>
+
+<!-- Upload File -->
+<script>
+    // const form = document.querySelector(".form-container"),
+    //     form2 = document.querySelector("form"),
+    //     fileInput = document.querySelector(".file-input"),
+    //     progressArea = document.querySelector(".progress-area"),
+    //     uploadedArea = document.querySelector(".uploaded-area");
+
+    // // form click event
+    // form.addEventListener("click", () => {
+    //     fileInput.click();
+    // });
+
+    // fileInput.onchange = ({
+    //     target
+    // }) => {
+    //     let file = target.files[
+    //         0]; //getting file [0] this means if user has selected multiple files then get first one only
+    //     if (file) {
+    //         let fileName = file.name; //getting file name
+    //         if (fileName.length >= 12) { //if file name length is greater than 12 then split it and add ...
+    //             let splitName = fileName.split('.');
+    //             fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
+    //         }
+    //         uploadFile(fileName); //calling uploadFile with passing file name as an argument
+    //     }
+    // }
+
+    // // file upload function
+    // function uploadFile(name) {
+    //     let xhr = new XMLHttpRequest(); //creating new xhr object (AJAX)
+    //     xhr.open("POST", "php/upload.php"); //sending post request to the specified URL
+    //     xhr.upload.addEventListener("progress", ({
+    //         loaded,
+    //         total
+    //     }) => { //file uploading progress event
+    //         let fileLoaded = Math.floor((loaded / total) * 100); //getting percentage of loaded file size
+    //         let fileTotal = Math.floor(total / 1000); //gettting total file size in KB from bytes
+    //         let fileSize;
+    //         // if file size is less than 1024 then add only KB else convert this KB into MB
+    //         (fileTotal < 1024) ? fileSize = fileTotal + " KB": fileSize = (loaded / (1024 * 1024)).toFixed(2) +
+    //             " MB";
+    //         let progressHTML = `<div class= "container_progressArea">
+    //                                     <i class="fas fa-file-alt"></i>
+    //                                     <div class="content">
+    //                                         <div class="content-text">
+    //                                             <p class="nama-file">${name}</p>
+    //                                             <p class="number-file">${fileLoaded}%</p>
+    //                                         </div>
+    //                                         <div class="content-progress">
+    //                                             <div class="bar-progress" style="width: ${fileLoaded}%"></div>
+    //                                         </div>
+    //                                     </div>
+    //                                 </div>`;
+    //         // uploadedArea.innerHTML = ""; //uncomment this line if you don't want to show upload history
+    //         // uploadedArea.classList.add("onprogress");
+    //         progressArea.innerHTML = progressHTML;
+    //         if (loaded == total) {
+    //             progressArea.innerHTML = "";
+    //             let uploadedHTML = `<div class= "container_uploadedArea">
+    //                                         <i class="fas fa-file-alt"></i>
+    //                                         <div class="content">
+    //                                             <div class="content-text">
+    //                                                 <p class="nama-file">${name}</p>
+    //                                                 <div class="span">
+    //                                                     <p class="number-file">${fileSize}</p>
+    //                                                     <p>| Uploaded</p>
+    //                                                 </div>
+    //                                             </div>
+    //                                             <i class="fa-solid fa-check"></i>
+    //                                         </div>
+    //                                     </div>`;
+    //             // uploadedArea.classList.remove("onprogress");
+    //             // uploadedArea.innerHTML = uploadedHTML; //uncomment this line if you don't want to show upload history
+    //             uploadedArea.insertAdjacentHTML("afterbegin",
+    //                 uploadedHTML); //remove this line if you don't want to show upload history
+    //         }
+    //     });
+
+    //     let data = new FormData(form2); //FormData is an object to easily send form data
+    //     xhr.send(data); //sending form data
+    // }
+</script>
+
+<!-- Keterangan Belum Lengkap -->
+<script>
+    let belumLengkap = document.querySelector("#gridRadios2");
+    let keterangan = document.querySelector(".keterangan");
+
+    $(function() {
+        /* console.log("width: "+ document.body.clientWidth); */
+        
+        if(document.getElementById('Belum').checked) {
+            keterangan.classList.remove("keterangan");
+            keterangan.classList.remove("hidden");
+            keterangan.classList.add("open");
+        }
+
+        $('#Belum').click(function() {
+            keterangan.classList.remove("keterangan");
+            keterangan.classList.remove("hidden");
+            keterangan.classList.add("open");
+            // $('.keterangan').toggleClass('open');
+        });
+
+        $('#gridRadios1').click(function() {
+            document.getElementById('keterangan').value = '';
+            keterangan.classList.remove("keterangan");
+            keterangan.classList.remove("open");
+            keterangan.classList.add("hidden");
+            // $('.keterangan').toggleClass('hidden');
+        });
+
+        $('#gridRadios2').click(function() {
+            keterangan.classList.remove("keterangan");
+            keterangan.classList.remove("hidden");
+            keterangan.classList.add("open");
+            // $('.keterangan').toggleClass('open');
+        });
+    });
+</script>
+
+<!-- Select2 -->
+<script src="{{ asset('/Library/Select2/select2.min.js') }}"></script>
+<script>
+    $('.form-select').select2({
+        templateResult: function(option) {
+            if(option.element && (option.element).hasAttribute('hidden')){
+                return null;
+            }
+            return option.text;
+   }
+});
+</script>
+
+<!-- Sidebar -->
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement
+                .parentElement; //selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+
+    let subarrow = document.querySelectorAll(".sub-arrow");
+    for (var i = 0; i < subarrow.length; i++) {
+        subarrow[i].addEventListener("click", (e) => {
+            let subarrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+            subarrowParent.classList.toggle("showMenuSub");
+        });
+    }
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    let inn = document.querySelector(".icon");
+    console.log(sidebarBtn);
+    console.log(inn);
+
+    $(function() {
+        /* console.log("width: "+ document.body.clientWidth); */
+
+        resizeScreen();
+        $(window).resize(function() {
+            resizeScreen();
+        });
+        $('.bx-menu').click(function() {
+
+            if (document.body.clientWidth > 400) {
+                $('.sidebar').toggleClass('close');
+                $('.navbar').toggleClass('close');
+            } else {
+                $('.sidebar').toggleClass('small-screen');
+            }
+        });
+
+        function resizeScreen() {
+            if (document.body.clientWidth < 400) {
+                $('.sidebar').addClass('close');
+            } else {
+                $('.sidebar').removeClass('close');
+            }
+        }
+    });
+</script>
+
+<!-- Tooltip -->
+<script>
+    $(document).ready(function() {
+        $('[data-bs-toggle="tooltip"').tooltip({trigger: 'click'});
+    });
+</script>
+
+<script>
+    var date = new Date();
+    var current_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    $("#buttonExport").click(function() {
+        $("#example").table2excel({
+            // exclude CSS class
+            exclude: ".noExl",
+            name: "Worksheet Name",
+            filename: document.title + `-${current_date}`, //do not include extension
+            fileext: ".xls", // file extension
+        });
+    });
+</script>
+
+<script>
+        const mainInputThumbnail = document.querySelector("#main-input-thumbnail");
+        const secondInputThumbnail = document.querySelector("#second-input-thumbnail");
+        const imgthumbnail = document.querySelector("#image-thumbnail");
+
+        function mainInputActiveThumbnail() {
+            mainInputThumbnail.click();
+        }
+        mainInputThumbnail.addEventListener("change", function() {
+            const file = this.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const result = reader.result;
+                    imgthumbnail.src = result;
+                    }
+                reader.readAsDataURL(file);
+            }
+        });
+</script>
+
+{{-- Expand Table --}}
+<script>
+    // function expand() {
+    //     var y = document.getElementById("foo");
+    //     y.setAttribute("rowspan", "2");
+    // }
+
+    function expand() {
+        document.getElementById("foo").setAttribute("rowspan", "2");
+        document.getElementById("foo2").setAttribute("rowspan", "2");
+    }
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let loop = i;
+            var loopnum = ("number" + loop);
+            var loopact = ("action" + loop);
+            var expand = this.parentElement.nextElementSibling;
+            var number = document.getElementById("number");
+            var action = document.getElementById("action");
+
+            // number.setAttribute("rowspan", "2");
+            // action.setAttribute("rowspan", "2");
+            // var number = this.lastChild();
+            // var action = this.lastChild();
+            if (expand.style.display === "table-row") {
+                expand.style.display = "none";
+                number.setAttribute("rowspan", "1");
+                action.setAttribute("rowspan", "1");
+                // number.rowSpan = "1";
+                // number.setAttribute("rowspan", "1");
+                // action.setAttribute("rowspan", "1");
+                // number.removeAttribute("rowspan", "2");
+                // action.removeAttribute("rowspan", "2");
+            } else {
+                expand.style.display = "table-row";
+                // number.rowSpan = "2";
+                // number.setAttribute("rowspan", "2");
+                // action.setAttribute("rowspan", "2");
+            }
+        });
+    }
+
+    // var elems = document.body.getElementsByTagName("td");
+    // for (var i = 0; i < elems.length; i++) {
+    //     elems[i].setAttribute("rowspan", "2");
+    // }
+
+    // $(document).ready(function() {
+    //     $("foo").attr("rowspan", "2");
+    // });
+
+    // var y = document.getElementById("foo");
+    // y.setAttribute("rowspan", "2");
+</script>
+
+<!-- File Upload New -->
+<script>
+ FilePond.registerPlugin(
+    // validates the size of the file
+    FilePondPluginFileValidateSize,
+)
+const inputElement = document.querySelector('input[id="file"]');
+// Create a FilePond instance
+const pond = FilePond.create(inputElement);
+//tujuan filepond
+FilePond.setOptions({
+    server: {
+        process: '{{ route("upload") }}', //upload
+        revert: (uniqueFileId, load, error) => {
+                    //delete file
+                    deleteImage(uniqueFileId);
+                    error('Error terjadi saat delete file');
+                    load();
+                },
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    },
+    labelIdle: '<i class="fas fa-cloud-upload-alt"></i><br>Tarik File kesini atau <span class="filepond--label-action">Pilih File</span>',
+    labelInvalidField: 'Field berisi file tidak valid',
+    labelFileWaitingForSize: 'Menunggu ukuran',
+    labelFileSizeNotAvailable: 'Ukuran tidak tersedia',
+    labelFileLoading: 'Memuat',
+    labelFileLoadError: 'Kesalahan saat memuat',
+    labelFileProcessing: 'Mengunggah',
+    labelFileProcessingComplete: 'Unggahan selesai',
+    labelFileProcessingAborted: 'Unggahan dibatalkan',
+    labelFileProcessingError: 'Kesalahan saat mengunggah',
+    labelFileProcessingRevertError: 'Kesalahan saat pengembalian',
+    labelFileRemoveError: 'Kesalahan saat menghapus',
+    labelTapToCancel: 'ketuk untuk membatalkan',
+    labelTapToRetry: 'ketuk untuk mencoba lagi',
+    labelTapToUndo: 'ketuk untuk mengurungkan',
+    labelButtonRemoveItem: 'Hapus',
+    labelButtonAbortItemLoad: 'Batal',
+    labelButtonRetryItemLoad: 'Coba Kembali',
+    labelButtonAbortItemProcessing: 'Batal',
+    labelButtonUndoItemProcessing: 'Batal',
+    labelButtonRetryItemProcessing: 'Coba Kembali',
+    labelButtonProcessItem: 'Unggah',
+    labelMaxFileSizeExceeded: 'File terlalu besar',
+    labelMaxFileSize: 'Ukuran file maksimum adalah {filesize}',
+    labelMaxTotalFileSizeExceeded: 'Jumlah file maksimum terlampaui',
+    labelMaxTotalFileSize: 'Jumlah file maksimum adalah {filesize}',
+    labelFileTypeNotAllowed: 'Jenis file tidak valid',
+    fileValidateTypeLabelExpectedTypes: 'Mengharapkan {allButLastType} atau {lastType}',
+    imageValidateSizeLabelFormatError: 'Jenis gambar tidak didukung',
+    imageValidateSizeLabelImageSizeTooSmall: 'Gambar terlalu kecil',
+    imageValidateSizeLabelImageSizeTooBig: 'Gambar terlalu besar',
+    imageValidateSizeLabelExpectedMinSize: 'Ukuran minimum adalah {minWidth} × {minHeight}',
+    imageValidateSizeLabelExpectedMaxSize: 'Ukuran maksimum adalah {minWidth} × {minHeight}',
+    imageValidateSizeLabelImageResolutionTooLow: 'Resolusi terlalu rendah',
+    imageValidateSizeLabelImageResolutionTooHigh: 'Resolusi terlalu tinggi',
+    imageValidateSizeLabelExpectedMinResolution: 'Resolusi minimum adalah {minResolution}',
+    imageValidateSizeLabelExpectedMaxResolution: 'Resolusi maksimum adalah {maxResolution}'
+});
+function deleteImage(nameFile){
+    $.ajax({
+            url: '{{ route("remove") }}',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "DELETE",
+            data: {
+                file_name: nameFile
+            },
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(response) {
+                console.log('error')
+            }
+        });
+}
+</script>
+<!-- Delete File -->
+<script>
+$(".deleteRecord").click(function(){
+    var id = $(this).data("id");
+   
+    $.ajax(
+    {
+        url: "/archive/archive-edit/"+id,
+        headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+        type: 'DELETE',
+        data: {
+            "id": id,
+            "_method": 'DELETE',
+        },
+        success: function (){
+            console.log("it Works");
+        }
+    });
+   
+});
+</script>
+<!-- Fetch File -->
+<script>
+fetchfile();
+function fetchfile() {
+    var archive_id = $("#archive_id").val();
+    var unit_id = $("#unit_id").val();
+      $.ajax({
+          url: "/archive/archive-edit/"+archive_id+"/"+unit_id,
+          dataType: "json",
+          success: function (response) {
+              $('.existing-files').html("");
+              $.each(response.file, function (key, item) {
+                console.log("it Works");
+                  $('.existing-files').append
+                    ('<div class="alert alert-primary d-flex p-1 rounded-3">\
+                    <i class="fa fa-info-circle text-primary me-3 align-self-center"></i>\
+                    <div class="mb-0">'+item.file_name+'</div>\
+                    <button type="button" style="margin-left:100px" data-bs-toggle="modal" data-bs-target="#exampleModal'+item.id+'">\
+                        <i class="fa-solid fa-trash action-danger"></i>\
+                    </button>\
+                    </div>');
+              });
+          }
+      });
+  }
+</script>
