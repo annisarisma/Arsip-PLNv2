@@ -110,16 +110,16 @@
                 <div class="upload-file col-md-12">
                     <label class="form-label">File</label>
                     <div class="existing-files">
-                        @foreach ($files as $file)
-                        <div class="alert alert-primary d-flex p-1 rounded-3">
+                        <!-- @foreach ($files as $file) -->
+                        <!-- <div class="alert alert-primary d-flex p-1 rounded-3">
                             <i class="fa fa-info-circle text-primary me-3 align-self-center"></i>
                             <div class="mb-0">{{$file->file_name}}</div>
                             <button type="button" style="margin-left:100px" data-bs-toggle="modal" data-bs-target="#exampleModal{{$file->id}}">
                                 <i class="fa-solid fa-trash action-danger"></i>
                             </button>
-                        </div>
+                        </div> -->
                         <!-- Modal Alert -->
-                        <div class="modal fade modal-sm" id="exampleModal{{$file->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- <div class="modal fade modal-sm" id="exampleModal{{$file->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-alert modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-close">
@@ -136,8 +136,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        @endforeach
+                        </div> -->
+                        <!-- @endforeach -->
                     </div>
 
                     <label class="form-label">Tambahkan File</label>

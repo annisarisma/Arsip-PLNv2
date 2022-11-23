@@ -237,13 +237,14 @@ class ArchiveController extends Controller
         ]);
     }
 
-    // public function edit_file(Request $request)
-    // {
-    //     $file = Files::where('archive_id', $request->archive_id)->get();
-    //     return response()->json([
-    //         'file'=>$file,
-    //     ]);
-    // }
+    public function edit_file(Request $request)
+    {
+        $file = Files::where('archive_id', $request->archive_id)->get();
+        return response()->json([
+            'file'=>$file,
+            'request' =>$request->archive_id
+        ]);
+    }
 
     /**
      * Update the specified resource in storage.

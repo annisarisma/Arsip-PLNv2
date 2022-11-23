@@ -20,16 +20,13 @@ use App\Http\Controllers\BannerController;
 |
 */
 
-Route::get('/', function () {
-    return view('/welcome');
-});
-
 //LOGIN & REGIST/
 Route::group(['middleware' => 'guest'], function () {
     Route::controller(LoginRegisterController::class)->group(function () {
         Route::get('/register', 'register_index');
         Route::post('/register/register-create', 'register_create');
         Route::get('/login', 'login_index')->name('login');
+        Route::get('/', 'login_index');
         Route::post('/login/login-create', 'login_create');
     });
 });
@@ -59,7 +56,7 @@ Route::group(['middleware' => ['auth','unverified']],function () {
         Route::delete('archive/remove', 'destroy_temp')->name('remove');
         Route::delete('/archive/archive-edit/{id}', 'destroy_file')->name('remove_file');
         Route::get('/archive/archive-edit/{id}/{unit_id}', 'edit');
-        // Route::get('/archive/archive-edit/{id}/{unit_id}', 'edit_file');
+        Route::get('/archive/archive-edit/{id}/{unit_id}', 'edit_file');
         Route::post('/archive/archive-edit/{id}', 'update');
         Route::post('/archive/archive-delete/{id}', 'destroy');
         
