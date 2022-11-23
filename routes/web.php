@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth','unverified']],function () {
         Route::delete('archive/remove', 'destroy_temp')->name('remove');
         Route::delete('/archive/archive-edit/{id}', 'destroy_file')->name('remove_file');
         Route::get('/archive/archive-edit/{id}/{unit_id}', 'edit');
-        Route::get('/archive/archive-edit/{id}/{unit_id}', 'edit_file');
+        Route::post('/archive/archive-edit/{id}/{unit_id}', 'edit_file');
         Route::post('/archive/archive-edit/{id}', 'update');
         Route::post('/archive/archive-delete/{id}', 'destroy');
         
