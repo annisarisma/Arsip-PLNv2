@@ -20,7 +20,7 @@
         border: dashed #CAD6D9;
     }
     .filepond--root {
-    max-height: 350px;
+    max-height: 250px;
     }
     [data-filepond-item-state='processing-complete'] .filepond--item-panel {
     background-color: #1c5b68;

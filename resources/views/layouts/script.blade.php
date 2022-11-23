@@ -454,6 +454,14 @@ FilePond.setOptions({
     imageValidateSizeLabelExpectedMinResolution: 'Resolusi minimum adalah {minResolution}',
     imageValidateSizeLabelExpectedMaxResolution: 'Resolusi maksimum adalah {maxResolution}'
 });
+$('#form').on('submit',function(e) {
+		if (pond.status != 4) {
+			return false;
+		}
+		$(this).find(':button[type=submit]').hide();
+		return true;
+	});
+
 function deleteImage(nameFile){
     $.ajax({
             url: '{{ route("remove") }}',
@@ -473,10 +481,95 @@ function deleteImage(nameFile){
         });
 }
 </script>
-<!-- Delete File -->
+
+<!-- Modal Alert -->
+<div class="modal fade modal-sm" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-alert modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-close">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_bc4ugzhr.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
+                <h6>Hapus File?</h6>
+                <p>Anda yakin akan menghapus file ini?</p>
+                <input hidden type="text" id="delete_file_id">
+            </div>
+            <div class="modal-button d-flex">
+                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal">Batal</button>
+                <button type="button" data-bs-dismiss="modal" class="btn btn-danger btn-sm deleteRecord">Hapus</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fetch File -->
 <script>
-    $(".deleteRecord26").click(function(){
-        var id = $(this).data("id");
+$(document).ready(function() {
+
+    fetchfile();
+    function fetchfile() {
+        var archive_id = $("#archive_id").val(); 
+        var unit_id = $("#unit_id").val();
+        $.ajax({
+            url: "/archive/archive-edit/"+archive_id+"/"+unit_id,
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            dataType: "json",
+            data: {
+                "archive_id": archive_id,
+            },
+            type: 'POST',
+            success: function (response) {
+                    console.log("it Works");
+                $('.existing-files').html("");
+                $.each(response.file, function (key, item) {
+                    $('.existing-files').append
+                        (
+                        `<div class="alert d-flex p-1 rounded-3">
+                            <div class="icon-name d-flex">
+                                <i class="fa fa-file me-3 align-self-center"></i>
+                                <div class="mb-0">${item.file_name}</div>
+                            </div>
+                            <button type="button" value="${item.id}" class="delete_file">
+                                <i class="fa-solid fa-trash action-danger"></i>
+                            </button>
+                        </div>`
+                        // <button type="button" style="margin-left:100px" data-bs-toggle="modal" data-bs-target="#exampleModal${item.id}">
+                        // <div class="modal fade modal-sm" id="exampleModal${item.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        //     <div class="modal-dialog modal-alert modal-dialog-centered">
+                        //         <div class="modal-content">
+                        //             <div class="modal-close">
+                        //                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        //             </div>
+                        //             <div class="modal-body">
+                        //                 <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_bc4ugzhr.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
+                        //                 <h6>Hapus File?</h6>
+                        //                 <p>Anda yakin akan menghapus file ${item.id}?</p>
+                        //             </div>
+                        //             <div class="modal-button d-flex">
+                        //                 <button type="button" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal">Batal</button>
+                        //                 <button type="button" data-id="${item.id}" data-bs-dismiss="modal" class="btn btn-danger btn-sm deleteRecord">Hapus</button>
+                        //             </div>
+                        //         </div>
+                        //     </div>
+                        // </div>`
+                        );
+                });
+            }
+        });
+    }
+
+    $(document).on('click', '.delete_file', function(e){
+        e.preventDefault();
+        var file_id = $(this).val();
+        // alert(file_id);
+        $('#delete_file_id').val(file_id);
+        $('#DeleteModal').modal('show');
+    })
+    $(".deleteRecord").click(function(){
+        var id = $('#delete_file_id').val();
     
         $.ajax(
         {
@@ -491,64 +584,10 @@ function deleteImage(nameFile){
             },
             success: function (){
                 console.log("it Works");
+                fetchfile();
             }
         });
     
     });
-</script>
-<!-- Fetch File -->
-<script>
-$(document).ready(function() {
-
-fetchfile();
-function fetchfile() {
-    var archive_id = $("#archive_id").val(); 
-    var unit_id = $("#unit_id").val();
-      $.ajax({
-          url: "/archive/archive-edit/"+archive_id+"/"+unit_id,
-          headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-          dataType: "json",
-          data: {
-            "archive_id": archive_id,
-          },
-          type: 'POST',
-          success: function (response) {
-                console.log("it Works");
-              $('.existing-files').html("");
-              $.each(response.file, function (key, item) {
-                  $('.existing-files').append
-                    (
-                    `<div class="alert alert-primary d-flex p-1 rounded-3">
-                        <i class="fa fa-info-circle text-primary me-3 align-self-center"></i>
-                        <div class="mb-0">'${item.file_name}'</div>
-                        <button type="button" style="margin-left:100px" data-bs-toggle="modal" data-bs-target="#exampleModal${item.id}">
-                            <i class="fa-solid fa-trash action-danger"></i>
-                        </button>
-                    </div>
-                    <div class="modal fade modal-sm" id="exampleModal${item.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-alert modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-close">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_bc4ugzhr.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
-                                    <h6>Hapus File?</h6>
-                                    <p>Anda yakin akan menghapus file ${item.id}?</p>
-                                </div>
-                                <div class="modal-button d-flex">
-                                    <button type="button" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal">Batal</button>
-                                    <button type="button" data-id="${item.id}" data-bs-dismiss="modal" class="btn btn-danger btn-sm deleteRecord${item.id}">Hapus</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`
-                    );
-              });
-          }
-      });
-  }
 });
 </script>

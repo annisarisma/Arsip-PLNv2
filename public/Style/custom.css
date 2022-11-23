@@ -1666,4 +1666,21 @@ button {
 
 .deskripsi {
   cursor: pointer;
+}
+
+.existing-files {
+  overflow: auto;
+  max-height: 150px;
+}
+.existing-files .alert {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1c5b68 !important;
+  color: white !important;
+}
+.existing-files .alert .delete_file {
+  margin-right: 10px;
+}
+.existing-files .alert .delete_file i {
+  color: white;
 }/*# sourceMappingURL=custom.css.map */

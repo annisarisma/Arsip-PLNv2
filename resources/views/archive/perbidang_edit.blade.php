@@ -9,7 +9,7 @@
         <input hidden type="text" value="{{$archive->id}}" id="archive_id" name="archive_id" >
         <input hidden type="text" value="{{$archive->unit_id}}" id="unit_id" name="unit_id">
 
-        <form class="row" action="/archive/archive-edit/{{$archive->id}}" method="post" enctype="multipart/form-data">
+        <form class="row" id="form" action="/archive/archive-edit/{{$archive->id}}" method="post" enctype="multipart/form-data">
             @csrf   
             <div class="row col-6">
 
@@ -117,25 +117,6 @@
                             <button type="button" style="margin-left:100px" data-bs-toggle="modal" data-bs-target="#exampleModal{{$file->id}}">
                                 <i class="fa-solid fa-trash action-danger"></i>
                             </button>
-                        </div> -->
-                        <!-- Modal Alert -->
-                        <!-- <div class="modal fade modal-sm" id="exampleModal{{$file->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-alert modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-close">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_bc4ugzhr.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
-                                        <h6>Hapus File?</h6>
-                                        <p>Anda yakin akan menghapus file {{$file->file_name}}?</p>
-                                    </div>
-                                    <div class="modal-button d-flex">
-                                        <button type="button" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal">Batal</button>
-                                        <button type="button" data-id="{{ $file->id }}" data-bs-dismiss="modal" class="btn btn-danger btn-sm deleteRecord">Hapus</button>
-                                    </div>
-                                </div>
-                            </div>
                         </div> -->
                         <!-- @endforeach -->
                     </div>
