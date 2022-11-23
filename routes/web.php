@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth','unverified']],function () {
         Route::post('/archive/archive-edit/{id}/{unit_id}', 'edit_file');
         Route::post('/archive/archive-edit/{id}', 'update');
         Route::post('/archive/archive-delete/{id}', 'destroy');
+        Route::post('/archive/archive-request-delete/', 'request_delete');
         
     });
 

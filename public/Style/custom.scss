@@ -609,7 +609,7 @@
                     padding: 0px;
                 }
 
-                #buttonExport{
+                #buttonExport {
                     background-color: #026c38;
                     color: #ffff;
                     i {
@@ -625,7 +625,7 @@
                     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.1);
                 }
 
-                .btn-create{
+                .btn-create {
                     background-color: #0275d8;
                     color: #ffff;
                     i {
@@ -1045,10 +1045,10 @@
             .form-check-input {
                 border-radius: 50%;
             }
-            .required:after{
-                content:" *";
-                color:red;
-        }
+            .required:after {
+                content: " *";
+                color: red;
+            }
         }
     }
 
@@ -1432,6 +1432,17 @@
             padding: 0px 12px 16px 12px;
             margin-top: 0px;
             display: flex;
+        }
+
+        // Modal Request
+        .modal-request {
+            justify-content: center;
+            gap: 8px;
+            padding: 0px 12px 16px 12px;
+            margin-top: 0px;
+            .d-flex {
+                gap: 12px;
+            }
         }
     }
 }

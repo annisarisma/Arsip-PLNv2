@@ -97,9 +97,15 @@
                                     <i class="fa-solid fa-pen-to-square action-edit"></i>
                                 </a>
                             </button>
-                            <button data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->id}}">
+                            @if (auth()->user()->role == 'superadmin')
+                            <button data-bs-toggle="modal" data-bs-target="#modal-remove-{{$item->id}}">
                                 <i class="fa-solid fa-trash action-danger"></i>
                             </button>
+                            @else
+                            <button data-bs-toggle="modal" data-bs-target="#modal-request-remove-{{$item->id}}">
+                                <i class="fa-solid fa-trash action-danger"></i>
+                            </button>
+                            @endif
                             <button>
                                 <i class="fa-solid fa-print action-warning"></i>
                             </button>
@@ -134,8 +140,8 @@
                         </td>
                     </tr>
 
-                    <!-- Modal Alert -->
-                    <div class="modal fade modal-sm" id="exampleModal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- Modal Alert Hapus -->
+                    <div class="modal fade modal-sm" id="modal-remove-{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-alert modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-close">
@@ -151,6 +157,37 @@
                                     <form action="/archive/archive-delete/{{ $item->id }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Alert Pengajuan Hapus -->
+                    <div class="modal fade modal-md" id="modal-request-remove-{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-alert modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-close">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h6>Mengajukan Hapus Arsip</h6>
+                                    <p>Ajukan hapus arsip untuk menghapus arsip {{$item->archive_name}}?</p>
+                                </div>
+                                <div class="modal-request">
+                                    <form id="myForm" action="/archive/archive-request-delete/" method="POST">
+                                        @csrf
+                                        <input type="text" hidden name="archive_id" value="{{ $item->id }}">
+                                        <input type="text" hidden name="user_id" value="{{ auth()->user()->id }}">
+                                        <div class="form-group col-md-12 mb-3">
+                                            <label class="form-label required">Alasan Pengajuan Hapus Arsip</label>
+                                            <textarea name="reason" id="reason" class="form-control form-input" rows="3" required></textarea>
+                                            <div id="validationServerUsernameFeedback" class="invalid-feedback"></div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <button type="button" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">Pengajuan Hapus</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -178,4 +215,20 @@
             </table>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#myForm").submit(function() {
+                var query = document.getElementById('reason');
+            
+                // Check if there is an entered value
+                if(query.value == "") {
+                    // Add errors highlight
+                    $('#validationServerUsernameFeedback').html("Please enter your search query");
+                    return false;
+                }
+                return true;
+            })
+        });
+    </script>
 @endsection

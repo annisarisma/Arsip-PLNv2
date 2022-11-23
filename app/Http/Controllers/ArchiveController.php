@@ -7,11 +7,13 @@ use App\Models\Category;
 use App\Models\Unit;
 use App\Models\Files;
 use App\Models\Temporary;
+use App\Models\DeleteRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ArchiveController extends Controller
 {
@@ -347,6 +349,46 @@ class ArchiveController extends Controller
             return redirect('/archive/k3l');
         }
         if($archive->unit_id == '4'){
+            return redirect('/archive/teknik');
+        }
+        else{
+            return redirect('/archive');
+        }
+    }
+
+    public function request_delete(Request $request)
+    {
+        // Validate
+        $request->validate(
+            [
+                'reason' => 'required',
+            ],
+            [
+                'reason.required' => 'Alasan hapus harus diisi',
+            ]
+        );
+
+        $deleteRequest = new DeleteRequest([
+            'archive_id' => $request->archive_id,
+            'user_id' => $request->user_id,
+            'reason' => $request->reason
+        ]);
+
+        $deleteRequest->save();
+
+        $user = Auth::user();
+
+        //Match Redirect with Unit ID
+        if($user->unit_id == '1'){
+            return redirect('/archive/adm-keuangan');
+        }
+        if($user->unit_id == '2'){
+            return redirect('/archive/perizinan-pertanahan');
+        }
+        if($user->unit_id == '3'){
+            return redirect('/archive/k3l');
+        }
+        if($user->unit_id == '4'){
             return redirect('/archive/teknik');
         }
         else{

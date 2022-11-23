@@ -1354,6 +1354,15 @@
   margin-top: 0px;
   display: flex;
 }
+.modal .modal-alert .modal-request {
+  justify-content: center;
+  gap: 8px;
+  padding: 0px 12px 16px 12px;
+  margin-top: 0px;
+}
+.modal .modal-alert .modal-request .d-flex {
+  gap: 12px;
+}
 
 button {
   border: none;

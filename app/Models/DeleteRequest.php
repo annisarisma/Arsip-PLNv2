@@ -11,7 +11,8 @@ class DeleteRequest extends Model
 
     protected $fillable = [
         'archive_id',
-        'user_id'
+        'user_id',
+        'reason'
     ];
 
     public function Archive() {
