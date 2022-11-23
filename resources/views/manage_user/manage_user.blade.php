@@ -43,6 +43,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Detail</th>
                                 <th>Username</th>
                                 <th>Bidang</th>
                                 <th>Status</th>
@@ -53,6 +54,11 @@
                             @foreach ($datas as $data)
                                 <tr>
                                     <td style="width: 2%;">{{ $no++ }}</td>
+                                    <td class="collapsible">
+                                        <button>
+                                            <i class="fa-solid fa-caret-down action-more"></i>
+                                        </button>
+                                    </td>
                                     <td style="width: 50%;">{{ $data->username }}</td>
                                     <td style="width: 18%;">{{ $data->unit->unit_name }}</td>
                                     <td style="width: 15%;">
@@ -213,6 +219,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Detail</th>
                                 <th>Nama Arsip</th>
                                 <th>Bidang</th>
                                 <th>Diajukan Oleh</th>
@@ -222,9 +229,14 @@
                         </thead>
                         <tbody>
                             @foreach ($delete_requests as $item)
-                                <tr class="collapsible">
+                                <tr>
                                     <td style="width: 2%;">{{ $n_deleteRequest++ }}</td>
-                                    <td style="width: 57%;">{{ $item->archive->archive_name }}</td>
+                                    <td class="collapsible" style="width: 3%;">
+                                        <button>
+                                            <i class="fa-solid fa-caret-down action-more"></i>
+                                        </button>
+                                    </td>
+                                    <td style="width: 54%;">{{ $item->archive->archive_name }}</td>
                                     <td style="width: 15%;">{{ $item->archive->unit->unit_name }}</td>
                                     <td style="width: 10%;">{{ $item->user->username }}</td>
                                     <td style="width: 10%;">{{ $item->created_at->translatedFormat('j F Y') }}</td>

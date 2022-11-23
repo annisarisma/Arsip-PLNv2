@@ -699,7 +699,7 @@
   cursor: pointer;
   text-align: center;
 }
-.home-section .home-content .content-archive .table tbody .collapsible button i {
+.home-section .home-content .content-archive .table tbody .collapsible button .action-more {
   width: 100%;
 }
 .home-section .home-content .content-archive .table tbody tr {

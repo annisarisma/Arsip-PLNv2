@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\ZipArchive;
+// use ZipArchive as GlobalZipArchive;
+use Zip;
 
 class ArchiveController extends Controller
 {
@@ -393,6 +396,35 @@ class ArchiveController extends Controller
         }
         else{
             return redirect('/archive');
+        }
+    }
+
+    public function downloadZip(Request $request)
+    {
+        // if($request->has('download')) {
+        //     $zip = new GlobalZipArchive;
+        //     $fileName = 'attachment.zip';
+        //     if ($zip->open(public_path($fileName), GlobalZipArchive::CREATE) === TRUE) {
+        //         // $files = File::files(public_path('uploads/file'));
+        //         $files = Files::where('archive_id', $request->id);
+        //         // foreach ($files as $key => $value) {
+        //         //     $relativeName = basename($value);
+        //         //     $zip->addFile($value, $relativeName);
+        //         // }
+        //         foreach($files as $file) {
+        //             $zip->addFile($file->path, $file->name);
+        //         }        
+        //         $zip->close();
+        //     }
+        //     return response()->download(public_path($fileName));
+        // }
+
+        $photos = Files::where('archive_id', $request->id);
+
+        $zip = Zip::create('package.zip');
+
+        foreach ($photos as $photo) {
+            $zip->add('s3://testbucket/images/' . $photo->gallery_id . '/' . $photo->folder_id . '/full/' . $photo->original_name);
         }
     }
 }
