@@ -1683,4 +1683,9 @@ button {
 }
 .existing-files .alert .delete_file i {
   color: white;
+}
+
+.btn:hover {
+  background-color: #153e46 !important;
+  color: #fff !important;
 }/*# sourceMappingURL=custom.css.map */

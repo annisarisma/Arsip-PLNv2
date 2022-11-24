@@ -43,7 +43,6 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Detail</th>
                                 <th>Username</th>
                                 <th>Bidang</th>
                                 <th>Status</th>
@@ -54,11 +53,6 @@
                             @foreach ($datas as $data)
                                 <tr>
                                     <td style="width: 2%;">{{ $no++ }}</td>
-                                    <td class="collapsible">
-                                        <button>
-                                            <i class="fa-solid fa-caret-down action-more"></i>
-                                        </button>
-                                    </td>
                                     <td style="width: 50%;">{{ $data->username }}</td>
                                     <td style="width: 18%;">{{ $data->unit->unit_name }}</td>
                                     <td style="width: 15%;">

@@ -1804,20 +1804,27 @@ button {
 }
 
 // File
-.existing-files{
+.existing-files {
     overflow: auto;
     max-height: 150px;
-    .alert{
+    .alert {
         display: flex;
         justify-content: space-between;
-        background-color:#1c5b68 !important;
+        background-color: #1c5b68 !important;
         color: white !important;
         // padding: 20px;
-        .delete_file{
+        .delete_file {
             margin-right: 10px;
-            i{
+            i {
                 color: white;
             }
         }
+    }
+}
+
+.btn {
+    &:hover {
+        background-color: #153e46 !important;
+        color: #fff !important;
     }
 }
