@@ -1827,4 +1827,13 @@ button {
         background-color: #153e46 !important;
         color: #fff !important;
     }
+    &:active {
+        background-color: #153e46 !important;
+        color: #fff !important;
+    }
+}
+
+.btn:focus {
+    background-color: #153e46 !important;
+    color: #fff !important;
 }

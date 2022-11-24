@@ -106,9 +106,11 @@
                                 <i class="fa-solid fa-trash action-danger"></i>
                             </button>
                             @endif
+                            @if ( $item->files->count() > 0 )
                             <a href="/archive/archive-download/{{ $item->id }}">
-                                <i class="fa-solid fa-print action-warning"></i>
+                                <i class="fa-regular fa-file-zipper action-warning"></i>
                             </a>
+                            @endif
                             @if ($item->completeness_status == "Belum Lengkap")
                                 <button data-bs-toggle="modal" data-bs-target="#modalKeterangan{{$item->id}}">
                                     <i class="fa-solid fa-circle-info action-primary"></i>
