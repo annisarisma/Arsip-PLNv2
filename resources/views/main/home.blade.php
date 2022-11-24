@@ -121,7 +121,7 @@
                                     </div>
                                     <div class="content">
                                         <h5 class="card-title">ADM & Keuangan</h5>
-                                        <p class="card-text">50</p>
+                                        <p class="card-text">{{$archive_adm->count()}}</p>
                                     </div>
                                 </div>
 
@@ -135,8 +135,8 @@
                                         <i class="fa-solid fa-box-archive"></i>
                                     </div>
                                     <div class="content">
-                                        <h5 class="card-title">ADM & Keuangan</h5>
-                                        <p class="card-text">50</p>
+                                        <h5 class="card-title">Perizinan & Pertanahan</h5>
+                                        <p class="card-text">{{$archive_pp->count()}}</p>
                                     </div>
                                 </div>
 
@@ -150,8 +150,8 @@
                                         <i class="fa-solid fa-box-archive"></i>
                                     </div>
                                     <div class="content">
-                                        <h5 class="card-title">ADM & Keuangan</h5>
-                                        <p class="card-text">50</p>
+                                        <h5 class="card-title">K3L</h5>
+                                        <p class="card-text">{{$archive_k3l->count()}}</p>
                                     </div>
                                 </div>
 
@@ -164,8 +164,8 @@
                                         <i class="fa-solid fa-box-archive"></i>
                                     </div>
                                     <div class="content">
-                                        <h5 class="card-title">ADM & Keuangan</h5>
-                                        <p class="card-text">50</p>
+                                        <h5 class="card-title">Teknik</h5>
+                                        <p class="card-text">{{$archive_teknik->count()}}</p>
                                     </div>
                                 </div>
 
@@ -179,66 +179,25 @@
                 <form role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 </form>
-
                 <div class="section-terbaru">
+                    @foreach ($archive->take(5) as $item)
                     <div class="card shadow">
                         <div class="card-body">
                             <div class="card-icon">
                                 <i class="fa-solid fa-box-archive"></i>
                             </div>
                             <div class="content">
-                                <h5 class="card-title">Permohonan Pembayaran Reimbuse</h5>
-                                <p class="card-text">ADM & Keuangan</p>
+                                <h5 class="card-title">{{$item->archive_name}}</h5>
+                                <p class="card-text">{{$item->Unit->unit_name}}</p>
                             </div>
-                            <a class="card-arrow">
+                            <!-- <a class="card-arrow">
                                 <i class="fa-solid fa-angle-right"></i>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <div class="card-icon">
-                                <i class="fa-solid fa-box-archive"></i>
-                            </div>
-                            <div class="content">
-                                <h5 class="card-title">Permohonan Pembayaran Reimbuse</h5>
-                                <p class="card-text">ADM & Keuangan</p>
-                            </div>
-                            <a class="card-arrow">
-                                <i class="fa-solid fa-angle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <div class="card-icon">
-                                <i class="fa-solid fa-box-archive"></i>
-                            </div>
-                            <div class="content">
-                                <h5 class="card-title">Permohonan Pembayaran Reimbuse</h5>
-                                <p class="card-text">ADM & Keuangan</p>
-                            </div>
-                            <a class="card-arrow">
-                                <i class="fa-solid fa-angle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <div class="card-icon">
-                                <i class="fa-solid fa-box-archive"></i>
-                            </div>
-                            <div class="content">
-                                <h5 class="card-title">Permohonan Pembayaran Reimbuse</h5>
-                                <p class="card-text">ADM & Keuangan</p>
-                            </div>
-                            <a class="card-arrow">
-                                <i class="fa-solid fa-angle-right"></i>
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
                     <div class="d-grid gap-2 mt-4">
-                        <button class="btn btn-sm" type="button">Lihat semua arsip</button>
+                        <button class="btn btn-sm" type="button"><a style="color:black; text-decoration:none" href="/archive/semua">Lihat semua arsip</a></button>
                     </div>
                 </div>
             </div>

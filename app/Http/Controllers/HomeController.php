@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use App\Models\Archive;
 
 class HomeController extends Controller
 {
@@ -17,7 +18,12 @@ class HomeController extends Controller
         $banner = Banner::where('type','Dashboard')->where('status','Aktif')->get();
         return view('main/home', [
             'title' => 'Beranda',
-            'banner' => $banner
+            'banner' => $banner,
+            'archive_adm' => Archive::getArchiveByUnit('1'),
+            'archive_pp' => Archive::getArchiveByUnit('2'),
+            'archive_k3l' => Archive::getArchiveByUnit('3'),
+            'archive_teknik' => Archive::getArchiveByUnit('4'),
+            'archive' => Archive::orderBy('created_at', 'desc')->get()
         ]);
     }
 

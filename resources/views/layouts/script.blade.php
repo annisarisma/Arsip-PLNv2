@@ -456,6 +456,7 @@ FilePond.setOptions({
 });
 $('#form').on('submit',function(e) {
 		if (pond.status === 3) {
+            alert("Tunggu hingga arsip selesai diupload!");
 			return false;
 		}
 		$(this).find(':button[type=submit]').hide();
