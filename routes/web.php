@@ -60,6 +60,8 @@ Route::group(['middleware' => ['auth','unverified']],function () {
         Route::post('/archive/archive-edit/{id}', 'update');
         Route::post('/archive/archive-delete/{id}', 'destroy');
         Route::post('/archive/archive-request-delete/', 'request_delete');
+        Route::get('/archive/archive-download/{id}', 'download_zip');
+        Route::get('/archive/archive-download-file/{id}', 'download_file');
         
     });
 

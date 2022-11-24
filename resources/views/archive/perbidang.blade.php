@@ -106,9 +106,9 @@
                                 <i class="fa-solid fa-trash action-danger"></i>
                             </button>
                             @endif
-                            <button>
+                            <a href="/archive/archive-download/{{ $item->id }}">
                                 <i class="fa-solid fa-print action-warning"></i>
-                            </button>
+                            </a>
                             @if ($item->completeness_status == "Belum Lengkap")
                                 <button data-bs-toggle="modal" data-bs-target="#modalKeterangan{{$item->id}}">
                                     <i class="fa-solid fa-circle-info action-primary"></i>
@@ -132,7 +132,9 @@
                                 </div>
                                 <div class="button">
                                     <i class="fa-solid fa-eye action-warning"></i>
-                                    <i class="fa-solid fa-print action-warning"></i>
+                                    <a href="/archive/archive-download-file/{{ $file->id }}" file target="_blank" style="color: #FFFF;">
+                                        <i class="fa-solid fa-print action-warning"></i>
+                                    </a>
                                 </div>
                             </div>
                             @endforeach

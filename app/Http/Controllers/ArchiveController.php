@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Break_;
+// use Illuminate\Support\Facades\ZipArchive;
 // use Illuminate\Support\Facades\ZipArchive;
 // use ZipArchive as GlobalZipArchive;
 use Zip;
+use ZipArchive;
+use ZipStream\ZipStream;
 
 class ArchiveController extends Controller
 {
@@ -399,32 +403,56 @@ class ArchiveController extends Controller
         }
     }
 
-    public function downloadZip(Request $request)
+    public function download_zip($archive)
     {
-        // if($request->has('download')) {
-        //     $zip = new GlobalZipArchive;
-        //     $fileName = 'attachment.zip';
-        //     if ($zip->open(public_path($fileName), GlobalZipArchive::CREATE) === TRUE) {
-        //         // $files = File::files(public_path('uploads/file'));
-        //         $files = Files::where('archive_id', $request->id);
-        //         // foreach ($files as $key => $value) {
-        //         //     $relativeName = basename($value);
-        //         //     $zip->addFile($value, $relativeName);
-        //         // }
-        //         foreach($files as $file) {
-        //             $zip->addFile($file->path, $file->name);
-        //         }        
-        //         $zip->close();
-        //     }
-        //     return response()->download(public_path($fileName));
-        // }
+        $archives = Archive::where('id', $archive)->get();
+        $files = Files::where('archive_id', $archive)->get();
 
-        $photos = Files::where('archive_id', $request->id);
+        $zip = new ZipArchive;
+        $fileName = $archives[0]->archive_name . '.zip';
+        // print_r(($file_name->file_name));
 
-        $zip = Zip::create('package.zip');
+        $imgarr= [];
+        foreach($files as $data){
 
-        foreach ($photos as $photo) {
-            $zip->add('s3://testbucket/images/' . $photo->gallery_id . '/' . $photo->folder_id . '/full/' . $photo->original_name);
+            $file =  storage_path() . 'app/files/'.$data->file_name;
+
+            if (File::exists(storage_path('app/files/'.$data->file_name))){
+                $imgarr[]= storage_path('app/files/'.$data->file_name);
+            }
+
         }
+
+        if ($zip->open(storage_path('app/files/' . $fileName), ZipArchive::CREATE) === TRUE)
+        {
+            $files = $imgarr; //passing the above array
+
+            foreach ($files as $key => $value) {
+                $relativeNameInZipFile = basename($value);
+                $zip->addFile($value, $relativeNameInZipFile);
+                var_dump($value);
+            }
+
+            $zip->close();
+        }
+
+        ob_end_clean();
+        return response()->download(storage_path('app/files/' . $fileName))->deleteFileAfterSend(true);
+        
     }
+
+    public function download_file($id)
+    {
+        // $archives = Archive::where('id', $archive)->get();
+        // $fileName = $archives[0]->archive_name . '.zip';
+
+        $file_query = Files::where('id', $id)->get();
+
+        $file_path = storage_path('app/files/' . $file_query[0]->file_name);
+        return response()->download($file_path);
+
+        // return Storage::download($file_query[0]->file_name);
+        
+    }
+    
 }
