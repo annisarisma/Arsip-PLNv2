@@ -24,7 +24,7 @@
 
                     <a class="btn btn-primary col-2" href="/user/manage-banner-create"><i class="fa-solid fa-layer-group icon"></i>Tambah Banner</a>
 
-                    <button class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-file-export"></i>Pratinjau Banner</button>
+                    <button class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#ModalPratinjau"><i class="fa-solid fa-file-export"></i>Pratinjau Banner</button>
 
                 </div>
 
@@ -239,7 +239,7 @@
     </div>
 
     <!-- Modal Pratinjau -->
-    <div class="modal fade modal-lg" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-lg" id="ModalPratinjau" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header d-block" style="border: none">
@@ -250,7 +250,38 @@
                     <h6 class="pl-2" style="color: grey;" id="exampleModalLabel">Dashboard</h6>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                        <div class="carousel-indicators">
+                            @php $i = 0; @endphp
+                            @foreach($banner as $item)
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$i}}" class="{{$i =='0' ? 'active':''}}" aria-current="true" aria-label="Slide 1"></button>
+                                @php $i++; @endphp
+                            @endforeach
+                            </div>
+                        <div class="carousel-inner">
+                                @php $i = 1; @endphp
+                                @foreach($banner as $item)
+                                <div class="carousel-item {{$i =='1' ? 'active':''}}">
+                                    @php $i++; @endphp
+                                    <img src="{{ asset('Banner/' . $item->image) }}" class="d-block w-100" alt="...">
+                                    <div class="carousel-caption d-none d-md-block">
+                                    <h5>{{$item->title}}</h5>
+                                    <p>{{$item->description}}</p>
+                                    </div>
+                                </div>
+                                @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="modal-footer" style="border: none">
                     <button type="button" class="btn mx-auto d-block" style="width:90%; background-color: #1c5b68;color:white" data-bs-dismiss="modal">Tutup</button>

@@ -455,7 +455,7 @@ FilePond.setOptions({
     imageValidateSizeLabelExpectedMaxResolution: 'Resolusi maksimum adalah {maxResolution}'
 });
 $('#form').on('submit',function(e) {
-		if (pond.status != 4) {
+		if (pond.status === 3) {
 			return false;
 		}
 		$(this).find(':button[type=submit]').hide();

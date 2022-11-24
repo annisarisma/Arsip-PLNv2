@@ -18,6 +18,7 @@ class BannerController extends Controller
             'title' => 'Kelola Banner',
             'banner_1' => Banner::where('type', 'Dashboard')->get(),
             'banner_2' => Banner::where('type', 'Login-Regist')->get(),
+            'banner' => Banner::where('type','Dashboard')->where('status','Aktif')->get(),
         ]);
     }
 
