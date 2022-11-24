@@ -7,7 +7,7 @@
             <h5>Tambah Arsip</h5>
         </div>
 
-        <form class="row" action="/archive/archive-create" method="post" enctype="multipart/form-data">
+        <form class="row" id="form" action="/archive/archive-create" method="post" enctype="multipart/form-data">
             @csrf   
             <div class="row col-6">
 
