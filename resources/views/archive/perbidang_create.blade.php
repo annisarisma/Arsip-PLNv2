@@ -20,7 +20,7 @@
                 <div class="col-md-12 mb-3">
                     <label class="form-label required">Nama Arsip </label>
                     <sub>(Hindari penggunaan simbol)</sub>
-                    <input type="text" class="form-control form-input @error('archive_name') is-invalid @enderror" name="archive_name">
+                    <input type="text" value="{{ old('archive_name') }}" class="form-control form-input @error('archive_name') is-invalid @enderror" name="archive_name">
                     @error('archive_name')
                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                             {{ $message }}
@@ -42,7 +42,7 @@
                     <select class="form-select form-input @error('category_id') is-invalid @enderror" name="category_id">
                         <option selected hidden value="pilih">Pilih Kategori...</option>
                         @foreach ($category as $item)
-                            <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                            <option value="{{ $item->id }}" @selected(old('category_id') == $item->id)>{{ $item->category_name }}</option>
                         @endforeach
                     </select>
                     @error('category_id')
@@ -55,7 +55,7 @@
                 <!-- Deskripsi -->
                 <div class="col-md-12 mb-3">
                     <label class="form-label required">Deskripsi</label>
-                    <textarea class="form-control form-input @error('description') is-invalid @enderror" rows="3" name="description"></textarea>
+                    <textarea value="{{ old('description') }}" class="form-control form-input @error('description') is-invalid @enderror" rows="3" name="description">{{ old('description') }}</textarea>
                     @error('description')
                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                             {{ $message }}
@@ -83,7 +83,7 @@
                 <!-- Keterangan Belum Lengkap -->
                 <div class="col-md-12 mb-3 keterangan">
                     <label class="form-label">Keterangan</label>
-                    <textarea class="form-control" rows="3" id="keterangan" name="additional_info"></textarea>
+                    <textarea class="form-control" rows="3" id="keterangan" name="additional_info">{{ old('additional_info') }}</textarea>
                 </div>
             </div>
 
