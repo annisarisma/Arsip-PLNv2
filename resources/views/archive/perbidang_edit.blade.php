@@ -122,9 +122,8 @@
                     </div>
 
                     <label class="form-label">Tambahkan File</label>
-                    <sub>(Max : 200MB)</sub>
                     <div class="mb-3">
-                        <input type="file" name="file" id='file' class='p-5' multiple data-max-file-size="200MB">
+                        <input type="file" name="file" id='file' class='p-5' multiple>
                     </div>
 
                     <!-- <div class="form-container">

@@ -21,7 +21,6 @@
 <script src="{{ asset('/Library/Filepond/filepond.js') }}"></script>
 <script src="{{ asset('/Library/Filepond/filepond.min.js') }}"></script>
 <script src="{{ asset('/Library/Filepond/id-id.js') }}"></script>
-<script src='https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js'></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
@@ -395,10 +394,6 @@
 
 <!-- File Upload New -->
 <script>
- FilePond.registerPlugin(
-    // validates the size of the file
-    FilePondPluginFileValidateSize,
-)
 const inputElement = document.querySelector('input[id="file"]');
 // Create a FilePond instance
 const pond = FilePond.create(inputElement);

@@ -90,9 +90,8 @@
             <div class="row col-6">
                 <div class="upload-file col-md-12">
                     <label class="form-label">Upload File</label>
-                    <sub>(Max : 200MB)</sub>
                     <div class="mb-3">
-                        <input type="file" name="file" id='file' class='p-5' multiple  data-max-file-size="200MB">
+                        <input type="file" name="file" id='file' class='p-5' multiple>
                     </div>
 
                     <!-- <div class="form-container">
