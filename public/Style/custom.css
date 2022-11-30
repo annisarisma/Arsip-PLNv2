@@ -1531,19 +1531,12 @@ button {
 .chip.chip-checkbox {
   cursor: pointer;
 }
-.chip.chip-checkbox > .chip-add-icon::after {
-  content: "add";
-}
-
-.chip.chip-checkbox.active > .chip-add-icon::after {
-  content: "done";
-}
 
 .chip {
   transition: all 0.3s ease-in-out;
   background-color: #fff;
   border-radius: 30px;
-  border: 1px solid #1c5b68;
+  border: 1px solid #d3d2d2;
   display: inline-flex;
   align-items: center;
   padding: 4px 6px 4px 6px;
@@ -1562,6 +1555,12 @@ button {
   background-color: #1c5b68;
 }
 .chip:hover span {
+  color: #ffffff;
+}
+.chip:focus {
+  background-color: #1c5b68;
+}
+.chip:focus span {
   color: #ffffff;
 }
 .chip:active:focus {
@@ -1591,6 +1590,9 @@ button {
   background-color: #1c5b68;
   border-color: #c3c2c2;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+}
+.chip.active span {
+  color: #ffffff;
 }
 
 .form-group-cover .container-images-cover {

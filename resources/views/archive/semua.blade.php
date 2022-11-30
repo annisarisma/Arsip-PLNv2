@@ -78,7 +78,7 @@
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-secondary">Reset Filter</button>
                             <button type="button" style='background-color:#1c5b68; color:white'class="btn btn-primary">Terapkan Filter</button>
                         </div>
                     </div>
