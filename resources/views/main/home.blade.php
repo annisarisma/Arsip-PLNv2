@@ -114,7 +114,7 @@
                     <h4>Arsip Bidang</h4>
                     <div class="row">
                         <div class="col-sm-3">
-                            <div class="card">
+                            <div class="card" onclick="this.querySelector('.link').click()" style="cursor:pointer;">
                                 <div class="card-body">
                                     <div class="card-icon">
                                         <i class="fa-solid fa-box-archive"></i>
@@ -122,14 +122,14 @@
                                     <div class="content">
                                         <h5 class="card-title">ADM & Keuangan</h5>
                                         <p class="card-text">{{$archive_adm->count()}}</p>
+                                        <a class="link" href="/filter-all?unit=1" display="none"> </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
                         <div class="col-sm-3">
-                            <div class="card">
+                            <div class="card" onclick="this.querySelector('.link').click()" style="cursor:pointer;">
                                 <div class="card-body">
                                     <div class="card-icon">
                                         <i class="fa-solid fa-box-archive"></i>
@@ -137,14 +137,14 @@
                                     <div class="content">
                                         <h5 class="card-title">Perizinan & Pertanahan</h5>
                                         <p class="card-text">{{$archive_pp->count()}}</p>
+                                        <a class="link" href="/filter-all?unit=2" display="none"> </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
                         <div class="col-sm-3">
-                            <div class="card">
+                            <div class="card" onclick="this.querySelector('.link').click()" style="cursor:pointer;">
                                 <div class="card-body">
                                     <div class="card-icon">
                                         <i class="fa-solid fa-box-archive"></i>
@@ -152,13 +152,13 @@
                                     <div class="content">
                                         <h5 class="card-title">K3L</h5>
                                         <p class="card-text">{{$archive_k3l->count()}}</p>
+                                        <a class="link" href="/filter-all?unit=3" display="none"> </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <div class="card">
+                            <div class="card" onclick="this.querySelector('.link').click()" style="cursor:pointer;">
                                 <div class="card-body">
                                     <div class="card-icon">
                                         <i class="fa-solid fa-box-archive"></i>
@@ -166,9 +166,9 @@
                                     <div class="content">
                                         <h5 class="card-title">Teknik</h5>
                                         <p class="card-text">{{$archive_teknik->count()}}</p>
+                                        <a class="link" href="/filter-all?unit=4" display="none"> </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                     </div>
                     @endforeach
                     <div class="d-grid gap-2 mt-4">
-                        <button class="btn btn-sm" type="button"><a style="color:black; text-decoration:none" href="/archive/semua">Lihat semua arsip</a></button>
+                        <button class="btn btn-sm" type="button"><a style="color:black; text-decoration:none" onMouseOver="this.style.color='#FFFFFF'" onMouseOut="this.style.color='#000000'" href="/archive/semua">Lihat semua arsip</a></button>
                     </div>
                 </div>
             </div>
