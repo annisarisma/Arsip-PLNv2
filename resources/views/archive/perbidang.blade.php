@@ -2,6 +2,7 @@
 @section('content')
     <div class="home-content">
         <div class="content-archive">
+        @include('layouts.flash-message')
             <div class="content-header">
                 <h4>Arsip
                     <h6><span class="badge rounded-pill">

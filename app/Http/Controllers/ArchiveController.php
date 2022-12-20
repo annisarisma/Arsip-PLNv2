@@ -230,16 +230,36 @@ class ArchiveController extends Controller
 
         //Match Redirect with Unit ID
         if($request->unit_id == '1'){
-            return redirect('/archive/adm-keuangan');
+            try {
+                return redirect('/archive/adm-keuangan')->with('success-store','Arsip berhasil ditambahkan');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($request->unit_id == '2'){
-            return redirect('/archive/perizinan-pertanahan');
+            try {
+                return redirect('/archive/perizinan-pertanahan')->with('success-store','Arsip berhasil ditambahkan');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($request->unit_id == '3'){
-            return redirect('/archive/k3l');
+            try {
+                return redirect('/archive/k3l')->with('success-store','Arsip berhasil ditambahkan');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($request->unit_id == '4'){
-            return redirect('/archive/teknik');
+            try {
+                return redirect('/archive/teknik')->with('success-store','Arsip berhasil ditambahkan');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         else{
             return redirect('/archive');
@@ -373,20 +393,41 @@ class ArchiveController extends Controller
 
         //Match Redirect with Unit ID
         if($request->unit_id == '1'){
-            return redirect('/archive/adm-keuangan');
+            try {
+                return redirect('/archive/adm-keuangan')->with('success-edit','Arsip berhasil diedit');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($request->unit_id == '2'){
-            return redirect('/archive/perizinan-pertanahan');
+            try {
+                return redirect('/archive/perizinan-pertanahan')->with('success-edit','Arsip berhasil diedit');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($request->unit_id == '3'){
-            return redirect('/archive/k3l');
+            try {
+                return redirect('/archive/k3l')->with('success-edit','Arsip berhasil diedit');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($request->unit_id == '4'){
-            return redirect('/archive/teknik');
+            try {
+                return redirect('/archive/teknik')->with('success-edit','Arsip berhasil diedit');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         else{
             return redirect('/archive');
         }
+    
     }
 
     public function destroy_file($id)
@@ -411,20 +452,42 @@ class ArchiveController extends Controller
 
         //Match Redirect with Unit ID
         if($archive->unit_id == '1'){
-            return redirect('/archive/adm-keuangan');
+            try {
+                return redirect('/archive/adm-keuangan')->with('success-destroy','Arsip berhasil dihapus');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($archive->unit_id == '2'){
-            return redirect('/archive/perizinan-pertanahan');
+            try {
+                return redirect('/archive/perizinan-pertanahan')->with('success-destroy','Arsip berhasil dihapus');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($archive->unit_id == '3'){
-            return redirect('/archive/k3l');
+            try {
+                return redirect('/archive/k3l')->with('success-destroy','Arsip berhasil dihapus');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         if($archive->unit_id == '4'){
-            return redirect('/archive/teknik');
+            try {
+                return redirect('/archive/teknik')->with('success-destroy','Arsip berhasil dihapus');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return back()
+                    ->with('failed', 'Arsip gagal ditambahkan');
+            }
         }
         else{
             return redirect('/archive');
         }
+    
+    
     }
 
     public function request_delete(Request $request)
