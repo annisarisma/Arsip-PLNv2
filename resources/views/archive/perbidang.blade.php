@@ -32,16 +32,82 @@
                 <button id="buttonExport" class="btn btn-primary col-2"><i class="fa-solid fa-file-export"></i>Export to Excel</button>
 
                 <div class="btn-group col-2">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFilter">
                         <i class="fa-solid fa-filter"></i>
-                        Dropdown Filter
+                        Filter Arsip
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-start">
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
-                    </ul>
+                </div>
+                @if(str_contains(url()->current(), '/filter-unit'))
+                <div class="btn-group col-2">
+                    @if ($title == "ADM & Keuangan")
+                    <a href="/archive/adm-keuangan/" class="btn btn-secondary"><i class="fa-solid fa-rotate-left"></i>Reset Filter</a>
+                    @elseif ($title == "Perizinan & Pertanahan")
+                    <a href="/archive/perizinan-pertanahan/" class="btn btn-secondary"><i class="fa-solid fa-rotate-left"></i>Reset Filter</a>
+                    @elseif ($title == "K3L")
+                    <a href="/archive/k3l/" class="btn btn-secondary"><i class="fa-solid fa-rotate-left"></i>Reset Filter</a>
+                    @else
+                    <a href="/archive/teknik/" class="btn btn-secondary"><i class="fa-solid fa-rotate-left"></i>Reset Filter</a>
+                    @endif
+                </div>
+                @endif
+                <!-- Modal Keterangan -->
+                <div class="modal fade modal-md" id="modalFilter" tabindex="-1" aria-labelledby="modalKeterangan" aria-hidden="true">
+                    <div class="modal-dialog modal-keterangan modal-dialog-centered">
+                        <div class="modal-content">
+                        @if ($title == "ADM & Keuangan")
+                        <form action="/archive/adm-keuangan/filter-unit" method="GET">
+                        @elseif ($title == "Perizinan & Pertanahan")
+                        <form action="/archive/perizinan-pertanahan/filter-unit" method="GET">
+                        @elseif ($title == "K3L")
+                        <form action="/archive/k3l/filter-unit" method="GET">
+                        @else
+                        <form action="/archive/teknik/filter-unit" method="GET">
+                        @endif
+                            <div class="modal-header">
+                                <h1>Filter Arsip</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Urutkan</p>
+                                    <div class="chip-group" tabindex="-1">
+                                        <div class="chip chip-checkbox" tabindex="0" >
+                                            <input type="radio" id="sort" value="desc" name="sort" checked />
+                                            <span>Terbaru</span>
+                                        </div>
+                                        <div class="chip chip-checkbox" tabindex="0" >
+                                            <input type="radio" id="sort" value="asc" name="sort" />
+                                            <span >Terlama</span>
+                                        </div>
+                                    </div>
+                                <br>
+                                <p>Kategori</p>
+                                    <div class="chip-group" tabindex="-1">
+                                        @foreach ($category as $item)
+                                        <div class="chip chip-checkbox"  tabindex="0" >
+                                            <input type="radio" id="category" value="{{$item->id}}" name="category" />
+                                            <span>{{$item->category_name}}</span>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                <br>
+                                <p>Status</p>
+                                    <div class="chip-group" tabindex="-1">
+                                        <div class="chip chip-checkbox"  tabindex="0">
+                                            <input type="radio" id="status" value="Lengkap" name="status" />
+                                            <span >Lengkap</span>
+                                        </div>
+                                        <div class="chip chip-checkbox"tabindex="0" >
+                                            <input type="radio" id="status" value="Belum Lengkap" name="status" />
+                                            <span >Belum Lengkap</span>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" style='background-color:#1c5b68; color:white'class="btn btn-primary">Terapkan Filter</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
                 </div>
 
             </div>

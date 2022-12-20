@@ -62,6 +62,13 @@ Route::group(['middleware' => ['auth','unverified']],function () {
         Route::post('/archive/archive-request-delete/', 'request_delete');
         Route::get('/archive/archive-download/{id}', 'download_zip');
         Route::get('/archive/archive-download-file/{id}', 'download_file');
+        //Filter//
+        Route::get('/filter-all', 'list_semua');
+        Route::get('/archive/adm-keuangan/filter-unit', 'list_adm_keuangan');
+        Route::get('/archive/perizinan-pertanahan/filter-unit', 'list_perizinan_pertanahan');
+        Route::get('/archive/k3l/filter-unit', 'list_k3l');
+        Route::get('/archive/teknik/filter-unit', 'list_teknik');
+
         
     });
 

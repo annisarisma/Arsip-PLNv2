@@ -31,7 +31,7 @@
             <!-- Menu Arsip -->
             <li class="{{ $title == 'Semua Bidang' ||
                 $title == 'ADM & Keuangan' ||
-                $title == 'Perizinan & Pertahanan' ||
+                $title == 'Perizinan & Pertanahan' ||
                 $title == 'K3L' ||
                 $title == 'Teknik'
                 ? 'active'
@@ -59,10 +59,10 @@
                             </a>
                         </div>
                     </li>
-                    <li class="{{ $title == 'Perizinan & Pertahanan' ? 'active' : '' }}">
+                    <li class="{{ $title == 'Perizinan & Pertanahan' ? 'active' : '' }}">
                         <div class="main-sub-menu">
                             <a href="/archive/perizinan-pertanahan">
-                                <span class="name-sub">Perizinan Pertahanan</span>
+                                <span class="name-sub">Perizinan Pertanahan</span>
                             </a>
                         </div>
                     </li>
@@ -97,7 +97,7 @@
              <!-- Menu Arsip -->
             <li class="{{ $title == 'Semua Bidang' ||
                 $title == 'ADM & Keuangan' ||
-                $title == 'Perizinan & Pertahanan' ||
+                $title == 'Perizinan & Pertanahan' ||
                 $title == 'K3L' ||
                 $title == 'Teknik'
                 ? 'active'
@@ -127,10 +127,10 @@
                             </div>
                         </li>
                     @elseif (auth()->user()->unit_id == '2')
-                        <li class="{{ $title == 'Perizinan & Pertahanan' ? 'active' : '' }}">
+                        <li class="{{ $title == 'Perizinan & Pertanahan' ? 'active' : '' }}">
                             <div class="main-sub-menu">
-                                <a href="/archive/perizinan-pertahanan">
-                                    <span class="name-sub">Perizinan Pertahanan</span>
+                                <a href="/archive/perizinan-pertanahan">
+                                    <span class="name-sub">Perizinan Pertanahan</span>
                                 </a>
                             </div>
                         </li>

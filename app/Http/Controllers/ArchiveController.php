@@ -24,56 +24,120 @@ use ZipStream\ZipStream;
 
 class ArchiveController extends Controller
 {
-    public function list_semua()
+    public function list_semua(Request $request)
     {
+        $archives = Archive::query();
+
+        if($request->filled('unit')){
+            $archives->where('unit_id', $request->unit);
+        }
+        if($request->filled('status')){
+            $archives->where('completeness_status', $request->status);
+        }
+        if($request->filled('sort')){
+            $archives->orderBy('updated_at', $request->sort);
+        }
+
         return view('archive/semua', [
             
             'title' => 'Semua Bidang',  
-            'archive' => Archive::all(),
+            'archive' => $archives->get(),
 
         ]);
     }
-    public function list_adm_keuangan()
+    public function list_adm_keuangan(Request $request)
     {
+        $archives = Archive::query()->where('unit_id', '1');
+
+        if($request->filled('category')){
+            $archives->where('category_id', $request->category);
+        }
+        if($request->filled('status')){
+            $archives->where('completeness_status', $request->status);
+        }
+        if($request->filled('sort')){
+            $archives->orderBy('updated_at', $request->sort);
+        }
+        
         if (Session::has('filename')) {
             Session::remove('filename');
         }
         return view('archive/perbidang', [
             'title' => 'ADM & Keuangan',
-            'archive' => Archive::getArchiveByUnit('1')
+            'archive' => $archives->get(),
+            'category' => Category::getCategoryByUnit('1')
         ]);
     }
 
-    public function list_perizinan_pertanahan()
+    public function list_perizinan_pertanahan(Request $request)
     {
+        $archives = Archive::query()->where('unit_id', '2');
+
+        if($request->filled('category')){
+            $archives->where('category_id', $request->category);
+        }
+        if($request->filled('status')){
+            $archives->where('completeness_status', $request->status);
+        }
+        if($request->filled('sort')){
+            $archives->orderBy('updated_at', $request->sort);
+        }
+        
         if (Session::has('filename')) {
             Session::remove('filename');
         }
         return view('archive/perbidang', [
             'title' => 'Perizinan & Pertanahan',
-            'archive' => Archive::getArchiveByUnit('2')
+            'archive' => $archives->get(),
+            'category' => Category::getCategoryByUnit('2')
         ]);
     }
 
-    public function list_k3l()
+    public function list_k3l(Request $request)
     {
+        $archives = Archive::query()->where('unit_id', '3');
+
+        if($request->filled('category')){
+            $archives->where('category_id', $request->category);
+        }
+        if($request->filled('status')){
+            $archives->where('completeness_status', $request->status);
+        }
+        if($request->filled('sort')){
+            $archives->orderBy('updated_at', $request->sort);
+        }
+        
         if (Session::has('filename')) {
             Session::remove('filename');
         }
         return view('archive/perbidang', [
             'title' => 'K3L',
-            'archive' => Archive::getArchiveByUnit('3')
+            'archive' => $archives->get(),
+            'category' => Category::getCategoryByUnit('3')
         ]);
     }
 
-    public function list_teknik()
+    public function list_teknik(Request $request)
     {
+        $archives = Archive::query()->where('unit_id', '4');
+
+        if($request->filled('category')){
+            $archives->where('category_id', $request->category);
+        }
+        if($request->filled('status')){
+            $archives->where('completeness_status', $request->status);
+        }
+        if($request->filled('sort')){
+            $archives->orderBy('updated_at', $request->sort);
+        }
+        
         if (Session::has('filename')) {
             Session::remove('filename');
         }
         return view('archive/perbidang', [
             'title' => 'Teknik',
-            'archive' => Archive::getArchiveByUnit('4')
+            'archive' => $archives->get(),
+            'category' => Category::getCategoryByUnit('4')
         ]);
     }
     /**

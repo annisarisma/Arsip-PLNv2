@@ -24,10 +24,16 @@
                     Filter Arsip
                 </button>
             </div>
+            @if(str_contains(url()->current(), '/filter-all'))
+            <div class="btn-group col-2">
+                <a href="archive/semua" class="btn btn-secondary"><i class="fa-solid fa-rotate-left"></i>Reset Filter</a>
+            </div>
+            @endif
             <!-- Modal Keterangan -->
             <div class="modal fade modal-md" id="modalFilter" tabindex="-1" aria-labelledby="modalKeterangan" aria-hidden="true">
                 <div class="modal-dialog modal-keterangan modal-dialog-centered">
                     <div class="modal-content">
+                    <form action="/filter-all" method="GET">
                         <div class="modal-header">
                             <h1>Filter Arsip</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -36,11 +42,11 @@
                             <p>Urutkan</p>
                                 <div class="chip-group" tabindex="-1">
                                     <div class="chip chip-checkbox" tabindex="0" >
-                                        <input type="radio" id="sort" value="Terbaru" name="sort" checked />
+                                        <input type="radio" id="sort" value="desc" name="sort" checked />
                                         <span>Terbaru</span>
                                     </div>
                                     <div class="chip chip-checkbox" tabindex="0" >
-                                        <input type="radio" id="sort" value="Terlama" name="sort" />
+                                        <input type="radio" id="sort" value="asc" name="sort" />
                                         <span >Terlama</span>
                                     </div>
                                 </div>
@@ -48,19 +54,19 @@
                             <p>Bidang</p>
                                 <div class="chip-group" tabindex="-1">
                                     <div class="chip chip-checkbox"  tabindex="0" >
-                                        <input type="radio" id="unit" value="ADM & KEUANGAN" name="unit" />
+                                        <input type="radio" id="unit" value="1" name="unit" />
                                         <span >ADM & KEUANGAN</span>
                                     </div>
                                     <div class="chip chip-checkbox"  tabindex="0"  >
-                                        <input type="radio" id="unit" value="PERIZINAN PERTANAHAN" name="unit" />
+                                        <input type="radio" id="unit" value="2" name="unit" />
                                         <span >PERIZINAN PERTANAHAN</span>
                                     </div>
                                     <div class="chip chip-checkbox" tabindex="0" >
-                                        <input type="radio" id="unit" value="K3L"name="unit" />
+                                        <input type="radio" id="unit" value="3"name="unit" />
                                         <span >K3L</span>
                                     </div>
                                     <div class="chip chip-checkbox"  tabindex="0" >
-                                        <input type="radio" id="unit" value="TEKNIK" name="unit" />
+                                        <input type="radio" id="unit" value="4" name="unit" />
                                         <span>TEKNIK</span>
                                     </div>
                                 </div>
@@ -78,9 +84,9 @@
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary">Reset Filter</button>
-                            <button type="button" style='background-color:#1c5b68; color:white'class="btn btn-primary">Terapkan Filter</button>
+                            <button type="submit" style='background-color:#1c5b68; color:white'class="btn btn-primary">Terapkan Filter</button>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
