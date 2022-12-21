@@ -18,6 +18,32 @@
                 <form action="/register/register-create" method="post">
                     @csrf
                     <div class="row">
+                        <!-- Nama Depan -->
+                        <div class="col-md-6 mb-3 field">
+                            <label class="form-label">Nama Depan</label>
+                            <input type="text" class="form-control form-input @error('nama_depan') is-invalid @enderror"
+                                name="nama_depan" placeholder="Nama Depan" value="{{ old('nama_depan') }}">
+
+                            @error('nama_depan')
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <!-- Nama Belakang -->
+                        <div class="col-md-6 mb-3 field">
+                            <label class="form-label">Nama Belakang</label>
+                            <input type="text" class="form-control form-input @error('nama_belakang') is-invalid @enderror"
+                                name="nama_belakang" placeholder="Nama Belakang" value="{{ old('nama_belakang') }}">
+
+                            @error('nama_belakang')
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        
                         <!-- Username -->
                         <div class="col-md-6 mb-3 field">
                             <label class="form-label">Username</label>

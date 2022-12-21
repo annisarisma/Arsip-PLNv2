@@ -177,6 +177,10 @@
 
                 <div class="content-field">
                     <div class="field">
+                        <label class="title-label">Nama</label>
+                        <p>{{ $user->nama_depan . ' ' . $user->nama_belakang }}</p>
+                    </div>
+                    <div class="field">
                         <label class="title-label">Username</label>
                         <p>{{ $user->username }}</p>
                     </div>
@@ -195,7 +199,7 @@
                 </div>
 
                 <div class="d-grid col-md-12">
-                    <a type="submit" class="btn btn-main"><i class="fa-solid fa-pen-to-square"></i>Edit Profile</a>
+                    <a href="/user/edit-profile" type="submit" class="btn btn-main"><i class="fa-solid fa-pen-to-square"></i>Edit Profile</a>
                 </div>
             </div>
         </div>

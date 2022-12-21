@@ -75,7 +75,10 @@ Route::group(['middleware' => ['auth','unverified']],function () {
     //User//
     Route::controller(UserController::class)->group(function () {
         Route::get('/user', 'index');
-        Route::get('/user/user-edit', 'edit');
+        Route::get('/user/edit-profile', 'edit');
+        Route::post('/user/change-password/{user}', 'update_password');
+        Route::post('/user/edit-profile/{user}', 'update_profile');
+
     });
 });
 

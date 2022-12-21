@@ -617,3 +617,11 @@ $(document).on("change", ".chip.chip-checkbox input", function(){
   $chip.attr("aria-checked", this.checked ? "true" : "false");
 });
 </script>
+
+@if (count($errors) > 0)
+    <script>
+        $( document ).ready(function() {
+             $('#modal-change-password').modal('show');
+        });
+    </script>
+@endif

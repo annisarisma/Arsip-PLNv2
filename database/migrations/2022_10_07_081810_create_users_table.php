@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->foreignId('unit_id')->constrained('units');
+            $table->string('nama_depan');
+            $table->string('nama_belakang');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role')->default('unverified');

@@ -1347,6 +1347,12 @@
   font-size: 14px;
   width: 80%;
 }
+.modal .modal-alert .form-body {
+  padding: 12px 20px 12px 20px;
+}
+.modal .modal-alert .form-body .form-button {
+  margin-top: 12px;
+}
 .modal .modal-alert .modal-button {
   justify-content: center;
   gap: 8px;
@@ -1699,4 +1705,15 @@ button {
 .btn:focus {
   background-color: #153e46 !important;
   color: #fff !important;
+}
+
+.informasi-pengguna .change-password .input-button {
+  display: flex;
+  align-items: center;
+}
+.informasi-pengguna .change-password .input-button a {
+  margin-left: 20px;
+  width: 200px;
+  font-style: italic;
+  text-decoration: none;
 }/*# sourceMappingURL=custom.css.map */

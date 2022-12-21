@@ -39,6 +39,9 @@ class LoginRegisterController extends Controller
         // Validate
         $request->validate(
             [
+                'nama_depan' => 'required',
+                'nama_belakang' => 'required',
+                'username' => 'required|min:5|max:20|unique:users,username',
                 'username' => 'required|min:5|max:20|unique:users,username',
                 'unit_id' => 'required',
                 'email' => 'required|email:rfc,dns',
@@ -46,6 +49,9 @@ class LoginRegisterController extends Controller
                 'confirm_password' => 'required'
             ],
             [
+                'nama_depan.required' => 'Nama depan harus diisi',
+                'nama_belakang.required' => 'Nama belakang harus diisi',
+
                 'username.required' => 'Username harus diisi',
                 'username.min' => 'Username harus berisi minimal 5 karakter',
                 'username.max' => 'Username harus berisi maksimal 20 karakter',
@@ -56,6 +62,8 @@ class LoginRegisterController extends Controller
         );
 
         $user = new User([
+            'nama_depan' => $request->nama_depan,
+            'nama_belakang' => $request->nama_belakang,
             'username' => $request->username,
             'unit_id' => $request->unit_id,
             'email' => $request->email,

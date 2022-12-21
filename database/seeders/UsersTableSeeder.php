@@ -18,6 +18,8 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
+                'nama_depan' => 'Super',
+                'nama_belakang' => 'Admin',
                 'username' => 'administrator',
                 'unit_id' => '1',
                 'email' => 'administrator@gmail.com',
