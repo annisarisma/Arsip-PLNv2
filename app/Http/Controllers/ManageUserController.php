@@ -146,4 +146,18 @@ class ManageUserController extends Controller
                 ->with('failed', 'Gagal menerima pengajuan hapus arsip');
         }
     }
+
+    public function manage_request_accept_selected(Request $request)
+    {
+        // 
+        foreach ($request->checkbox as $key => $value) {
+            $archive = Archive::findOrFail($value);
+            $nama = $archive->archive_name;
+            $archive->delete();
+        }
+        return back()
+            ->with('success', 'Berhasil menerima pengajuan hapus, dan arsip "' . $nama . '", berhasil di hapus dari database');
+
+        // return $request->checkbox;
+    }
 }

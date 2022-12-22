@@ -14,10 +14,6 @@
 
         <div class="content-row row">
 
-            <form role="search" class="col-5">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
             <a class="btn btn-create col-2" href="/category/category-create"><i class="fa-solid fa-layer-group icon"></i>Tambah Kategori</a>
 
             <button id="buttonExport" class="btn btn-primary col-2"><i class="fa-solid fa-file-export"></i>Export ke Excel</button>

@@ -2,6 +2,8 @@
 @section('content')
     <div class="home-content-user">
         <div class="content-user">
+            @include('layouts.flash-message')
+            
             <div class="user-left">
                 <div class="content-header">
                     <h4>User</h4>

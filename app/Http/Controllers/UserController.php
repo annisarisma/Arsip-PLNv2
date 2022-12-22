@@ -100,22 +100,40 @@ class UserController extends Controller
     {
         // Validation
 
-        $request->validate(
-            [
-                'nama_depan' => 'required',
-                'nama_belakang' => 'required',
-                'email' => 'required',
-                'username' => 'required|unique:users,username',
-            ],
-            [
-                'nama_depan.required' => 'Nama depan harus diisi',
-                'nama_belakang.required' => 'Nama belakang harus diisi',
-                'email.required' => 'Email harus diisi',
-                'username.required' => 'Username harus diisi',
-                'username.unique' => 'Username telah digunakan',
-
-            ]
-        );
+        if ($request->username == $user->username) {
+            $request->validate(
+                [
+                    'nama_depan' => 'required',
+                    'nama_belakang' => 'required',
+                    'email' => 'required',
+                    'username' => 'required',
+                ],
+                [
+                    'nama_depan.required' => 'Nama depan harus diisi',
+                    'nama_belakang.required' => 'Nama belakang harus diisi',
+                    'email.required' => 'Email harus diisi',
+                    'username.required' => 'Username harus diisi',
+    
+                ]
+            );
+        } else {
+            $request->validate(
+                [
+                    'nama_depan' => 'required',
+                    'nama_belakang' => 'required',
+                    'email' => 'required',
+                    'username' => 'required|unique:users,username',
+                ],
+                [
+                    'nama_depan.required' => 'Nama depan harus diisi',
+                    'nama_belakang.required' => 'Nama belakang harus diisi',
+                    'email.required' => 'Email harus diisi',
+                    'username.required' => 'Username harus diisi',
+                    'username.unique' => 'Username telah digunakan',
+    
+                ]
+            );
+        }
 
         $user->update([
             'nama_depan' => $request->nama_depan,
@@ -124,7 +142,7 @@ class UserController extends Controller
             'username' => $request->username
         ]);
 
-        return redirect('/user/edit-profile')
+        return redirect('/user')
                 ->with('success', 'Profile berhasil diubah');
     }
 

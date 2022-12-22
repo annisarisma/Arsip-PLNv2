@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth','unverified']],function () {
         Route::get('/user', 'index');
         Route::get('/user/edit-profile', 'edit');
         Route::post('/user/change-password/{user}', 'update_password');
-        Route::post('/user/edit-profile/{user}', 'update_profile');
+        Route::post('/user/update-profile/{user}', 'update_profile');
 
     });
 });
@@ -104,11 +104,13 @@ Route::group(['middleware' => 'superadmin'], function () {
     //Manage User//
     Route::controller(ManageUserController::class)->group(function () {
         Route::get('/manage-user', 'index');
+        Route::post('/accept-user/selected', 'manage_user_accept_selected');
         Route::post('/accept-user/{user}', 'manage_user_accept');
         Route::post('/dennied-user/{user}', 'manage_user_dennied');
         Route::delete('/delete-user/{user}', 'manage_user_destroy');
-        Route::delete('/delete-request/{delete_request}', 'manage_request_destroy');
+        Route::delete('/accept-request/selected', 'manage_request_accept_selected');
         Route::delete('/accept-request/{accept_request}', 'manage_request_accept');
+        Route::delete('/delete-request/{delete_request}', 'manage_request_destroy');
     });
 
     //Banner//

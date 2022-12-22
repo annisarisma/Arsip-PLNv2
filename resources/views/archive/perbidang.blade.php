@@ -12,10 +12,6 @@
                 </h4>
             </div>
             <div class="content-row row">
-
-                <form role="search" class="col-5">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                </form>
                 @if ($title == "ADM & Keuangan")
                 <a class="btn btn-create col-2" href="/archive/archive-create/1"><i
                         class="fa-solid fa-layer-group icon"></i>Tambah Arsip</a>

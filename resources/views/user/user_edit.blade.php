@@ -26,17 +26,32 @@
                     <!-- Bidang -->
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Nama Depan</label>
-                        <input type="text" name="nama_depan" class="form-control form-input @error('password') is-invalid @enderror" value="{{ $user->nama_depan }}">
+                        <input type="text" name="nama_depan" class="form-control form-input @error('nama_depan') is-invalid @enderror" value="{{ $user->nama_depan }}">
+                        @error('nama_depan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Nama Belakang</label>
-                        <input type="text" name="nama_belakang" class="form-control" value="{{ $user->nama_belakang }}">
+                        <input type="text" name="nama_belakang" class="form-control form-input @error('nama_belakang') is-invalid @enderror" value="{{ $user->nama_belakang }}">
+                        @error('nama_belakang')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" value="{{ $user->email }}">
+                        <input type="text" name="email" class="form-control form-input @error('email') is-invalid @enderror" value="{{ $user->email }}">
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
 
@@ -46,7 +61,12 @@
                     <!-- Bidang -->
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" value="{{ $user->username }}">
+                        <input type="text" name="username" class="form-control form-input @error('username') is-invalid @enderror" value="{{ $user->username }}">
+                        @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="col-md-6 mb-3">

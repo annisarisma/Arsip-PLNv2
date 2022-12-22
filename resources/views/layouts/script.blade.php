@@ -625,3 +625,26 @@ $(document).on("change", ".chip.chip-checkbox input", function(){
         });
     </script>
 @endif
+
+<script>
+    $(document).ready(function () {
+        $('#select_all').on('click', function(e) {
+            if($(this).is(':checked',true)) {
+                $(".select").prop('checked', true);  
+            } else {  
+                $(".select").prop('checked',false);  
+            }  
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#select_all_delete').on('click', function(e) {
+            if($(this).is(':checked',true)) {
+                $(".select_delete").prop('checked', true);  
+            } else {  
+                $(".select_delete").prop('checked',false);  
+            }  
+        });
+    });
+</script>

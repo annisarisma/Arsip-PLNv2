@@ -13,10 +13,6 @@
 
         <div class="content-row row">
 
-            <form role="search" class="col-5">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
             <button id="buttonExport" class="btn btn-primary col-2"><i class="fa-solid fa-file-export"></i>Export to Excel</button>
 
             <div class="btn-group col-2">
@@ -30,7 +26,8 @@
                 <a href="archive/semua" class="btn btn-secondary"><i class="fa-solid fa-rotate-left"></i>Reset Filter</a>
             </div>
             @endif
-            <!-- Modal Keterangan -->
+
+            <!-- Modal Filter -->
             <div class="modal fade modal-md" id="modalFilter" tabindex="-1" aria-labelledby="modalKeterangan" aria-hidden="true">
                 <div class="modal-dialog modal-keterangan modal-dialog-centered">
                     <div class="modal-content">
@@ -97,16 +94,16 @@
         <table id="example" class="table table-striped table-bordered table-hover" style="width:100%">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Detail</th>
-                    <th>Nama Bidang</th>
-                    <th>Kategori</th>
-                    <th>Nama Arsip</th>
-                    <th>Deskripsi</th>
-                    <th>Lampiran</th>
-                    <th>Username</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
+                    <th>NO</th>
+                    <th>DETAIL</th>
+                    <th>NAMA BIDANG</th>
+                    <th>KATEGORI</th>
+                    <th>NAMA ARSIP</th>
+                    <th>DESKRIPSI</th>
+                    <th>LAMPIRAN</th>
+                    <th>USERNAME</th>
+                    <th>STATUS</th>
+                    <th>AKSI</th>
                 </tr>
             </thead>
             <tbody>
