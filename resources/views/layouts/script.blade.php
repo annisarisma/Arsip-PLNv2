@@ -363,8 +363,7 @@
             // var action = this.lastChild();
             if (expand.style.display === "table-row") {
                 expand.style.display = "none";
-                number.setAttribute("rowspan", "1");
-                action.setAttribute("rowspan", "1");
+                
                 // number.rowSpan = "1";
                 // number.setAttribute("rowspan", "1");
                 // action.setAttribute("rowspan", "1");
@@ -638,13 +637,16 @@ $(document).on("change", ".chip.chip-checkbox input", function(){
     });
 </script>
 <script>
+    var buttonSelect = $('#buttonSelect');
     $(document).ready(function () {
         $('#select_all_delete').on('click', function(e) {
             if($(this).is(':checked',true)) {
-                $(".select_delete").prop('checked', true);  
+                $(".select_delete").prop('checked', true); 
+                buttonSelect.show(); 
             } else {  
-                $(".select_delete").prop('checked',false);  
-            }  
+                $(".select_delete").prop('checked',false);
+                buttonSelect.hide(); 
+            }
         });
     });
 </script>

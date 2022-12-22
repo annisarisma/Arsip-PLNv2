@@ -544,6 +544,26 @@
             display: none;
         }
 
+        table::-webkit-scrollbar {
+            display: none;
+        }
+
+        #buttonSelect {
+            display: none;
+        }
+
+        table {
+            max-height: 500px;
+            display: inline-block;
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+        }
+
         .content-archive {
             overflow-y: scroll;
             scrollbar-width: none;

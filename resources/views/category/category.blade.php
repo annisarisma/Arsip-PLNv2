@@ -37,10 +37,10 @@
         <table id="example" class="table table-striped table-bordered table-hover" style="width:100%">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Nama Bidang</th>
-                    <th>Nama Kategori</th>
-                    <th class="noExl">Aksi</th>
+                    <th>NO</th>
+                    <th>NAMA BIDANG</th>
+                    <th>NAMA KATEGORI</th>
+                    <th class="noExl">AKSI</th>
                 </tr>
             </thead>
             <tbody>

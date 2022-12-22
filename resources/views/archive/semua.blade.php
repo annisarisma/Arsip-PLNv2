@@ -90,12 +90,11 @@
             </div>
 
         </div>
-
         <table id="example" class="table table-striped table-bordered table-hover" style="width:100%">
             <thead>
                 <tr>
-                    <th>NO</th>
                     <th>DETAIL</th>
+                    <th>NO</th>
                     <th>NAMA BIDANG</th>
                     <th>KATEGORI</th>
                     <th>NAMA ARSIP</th>
@@ -112,12 +111,12 @@
                 @endphp
                 @foreach ($archive as $item)
                 <tr>
-                    <td class="no">{{ $i }}</td>
                     <td class="collapsible">
                         <button>
                             <i class="fa-solid fa-caret-down action-more"></i>
                         </button>
                     </td>
+                    <td class="no">{{ $i }}</td>
                     <td class="nama_bidang">{{$item->Unit->unit_name}}</td>
                     <td class="kategori hidden-wrap">{{$item->Category->category_name}}</td>
                     <td class="nama_proyek hidden-wrap">{{$item->archive_name}}</td>
@@ -145,9 +144,6 @@
                         </button>
                         @endif
                     </td>
-                    @php
-                        $i = $i + 1;
-                    @endphp
                 </tr>
                 {{-- Expand File --}}
                 <tr class="expand" id="expand">
@@ -183,7 +179,12 @@
                         </div>
                     </div>
                 </div>
+                @php
+                    $i = $i + 1;
+                @endphp
                 @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection

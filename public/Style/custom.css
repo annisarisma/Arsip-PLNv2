@@ -508,6 +508,23 @@
 .home-section .home-content .content-archive::-webkit-scrollbar {
   display: none;
 }
+.home-section .home-content table::-webkit-scrollbar {
+  display: none;
+}
+.home-section .home-content #buttonSelect {
+  display: none;
+}
+.home-section .home-content table {
+  max-height: 500px;
+  display: inline-block;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.home-section .home-content thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
 .home-section .home-content .content-archive {
   overflow-y: scroll;
   scrollbar-width: none;

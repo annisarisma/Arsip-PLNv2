@@ -112,8 +112,8 @@
             <table id="example" class="table table-striped table-bordered table-hover" style="width:100%">
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>Detail</th>
+                        <th>No</th>
                         <th>Nama Bidang</th>
                         <th>Nama Arsip</th>
                         <th>Kategori</th>
@@ -130,12 +130,12 @@
                     @endphp
                     @foreach ($archive as $item)
                     <tr>
-                        <td class="no">{{ $i }}</td>
                         <td class="collapsible">
                             <button>
                                 <i class="fa-solid fa-caret-down action-more"></i>
                             </button>
                         </td>
+                        <td class="no">{{ $i }}</td>
                         <td class="nama_bidang">{{$item->Unit->unit_name}}</td>
                         <td class="kategori hidden-wrap">{{$item->archive_name}}</td>
                         <td class="nama_proyek hidden-wrap">{{$item->Category->category_name}}</td>

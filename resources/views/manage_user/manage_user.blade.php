@@ -332,7 +332,7 @@
     
                                     {{-- Expand File --}}
                                     <tr class="expand" id="expand">
-                                        <td class="row-expand" colspan="9">
+                                        <td class="row-expand" colspan="8">
                                             
                                             <p>{{ $item->archive->files->count() }} <span>File Diunggah:</span></p>
                                             @foreach ($item->archive->files as $file)
