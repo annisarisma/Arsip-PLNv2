@@ -34,6 +34,48 @@
     });
 </script>
 
+<script>
+$(document).ready(function () {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $('#example').DataTable();
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+
+var table1 = $('#example1').DataTable( {
+    responsive: true,
+    lengthChange : true,
+    autoWidth: false,
+    ordering: true,
+} );
+
+var table2 = $('#example2').DataTable( {
+    responsive: true,
+    lengthChange : true,
+    autoWidth: false,
+    ordering: true,
+} );
+
+$('button[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
+  var tabID = $(event.target).attr('data-bs-target');
+  if ( tabID === '#loginregist' ) {
+    table2.columns.adjust().responsive.recalc();
+  }
+} );
+
+$('button[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
+  var tabID = $(event.target).attr('data-bs-target');
+  if ( tabID === '#loginregist' ) {
+    table2.columns.adjust().responsive.recalc();
+  }
+} );
+
+} );
+</script>
+
 <!-- Modal Unverified -->
 <script type="text/javascript">
     window.onload = () => {
@@ -649,4 +691,11 @@ $(document).on("change", ".chip.chip-checkbox input", function(){
             }
         });
     });
+</script>
+
+<!-- Warn Dirty Form -->
+<script>
+$( window ).unload(function() {
+    removeModal()
+});
 </script>

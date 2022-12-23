@@ -14,14 +14,26 @@ class ManageUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datas = User::orderBy('id', 'desc')->get();
+        $datas = User::query();
+
+        if($request->filled('unit')){
+            $datas->where('unit_id', $request->unit);
+        }
+        if($request->filled('status')){
+            $datas->where('status', $request->status);
+        }
+        if($request->filled('sort')){
+            $datas->orderBy('updated_at', $request->sort);
+        }
+
+        // $datas = User::orderBy('id', 'desc')->get();
         $delete_requests = DeleteRequest::all();
         return view('manage_user/manage_user', [
             'no' => 1,
             'n_deleteRequest' => 1,
-            'datas' => $datas,
+            'datas' => $datas->orderBy('id', 'desc')->get(),
             'delete_requests' => $delete_requests,
             'title' => 'Kelola Pengguna'
         ]);

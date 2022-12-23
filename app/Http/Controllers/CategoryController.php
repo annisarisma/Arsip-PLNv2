@@ -75,6 +75,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate
+        $request->validate(
+            [
+                'unit_id' => 'required|not_regex:/^(Pilih)$/i',
+                'category_name' => 'required',
+            ],
+            [
+                'unit_id.required' => 'Bidang harus diisi',
+                'category_name.required' => 'Nama Kategori harus diisi',
+            ]
+        );
+
         $category = new Category([
             'unit_id' => $request->unit_id,
             'category_name' => $request->category_name,
@@ -137,6 +149,18 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category=Category::findOrFail($id);
+
+        // Validate
+        $request->validate(
+            [
+                'unit_id' => 'required|not_regex:/^(Pilih)$/i',
+                'category_name' => 'required',
+            ],
+            [
+                'unit_id.not_regex' => 'Bidang harus diisi',
+                'category_name.required' => 'Nama Kategori harus diisi',
+            ]
+        );
 
         $category->update([
             'unit_id' => $request->unit_id,

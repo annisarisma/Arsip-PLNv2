@@ -111,6 +111,8 @@ Route::group(['middleware' => 'superadmin'], function () {
         Route::delete('/accept-request/selected', 'manage_request_accept_selected');
         Route::delete('/accept-request/{accept_request}', 'manage_request_accept');
         Route::delete('/delete-request/{delete_request}', 'manage_request_destroy');
+        //Filter
+        Route::get('/filter-user', 'index');
     });
 
     //Banner//

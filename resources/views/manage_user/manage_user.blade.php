@@ -28,84 +28,19 @@
                             <div class="btn-group col-2">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFilter">
                                     <i class="fa-solid fa-filter"></i>
-                                    Filter Arsip
+                                    Filter Pengguna
                                 </button>
                             </div>
 
-                            @if(str_contains(url()->current(), '/filter-all'))
+                            @if(str_contains(url()->current(), '/filter-user'))
                                 <div class="btn-group col-2">
-                                    <a href="archive/semua" class="btn btn-secondary"><i class="fa-solid fa-rotate-left"></i>Reset Filter</a>
+                                    <a href="/manage-user" class="btn btn-secondary"><i class="fa-solid fa-rotate-left"></i>Reset Filter</a>
                                 </div>
                             @endif
 
-                            <!-- Modal Filter -->
-                            <div class="modal fade modal-md" id="modalFilter" tabindex="-1" aria-labelledby="modalKeterangan" aria-hidden="true">
-                                <div class="modal-dialog modal-keterangan modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <form action="/filter-all" method="GET">
-                                            <div class="modal-header">
-                                                <h1>Filter Arsip</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Urutkan</p>
-                                                    <div class="chip-group" tabindex="-1">
-                                                        <div class="chip chip-checkbox" tabindex="0" >
-                                                            <input type="radio" id="sort" value="desc" name="sort" checked />
-                                                            <span>Terbaru</span>
-                                                        </div>
-                                                        <div class="chip chip-checkbox" tabindex="0" >
-                                                            <input type="radio" id="sort" value="asc" name="sort" />
-                                                            <span >Terlama</span>
-                                                        </div>
-                                                    </div>
-                                                <br>
-                                                <p>Bidang</p>
-                                                    <div class="chip-group" tabindex="-1">
-                                                        <div class="chip chip-checkbox"  tabindex="0" >
-                                                            <input type="radio" id="unit" value="1" name="unit" />
-                                                            <span >ADM & KEUANGAN</span>
-                                                        </div>
-                                                        <div class="chip chip-checkbox"  tabindex="0"  >
-                                                            <input type="radio" id="unit" value="2" name="unit" />
-                                                            <span >PERIZINAN PERTANAHAN</span>
-                                                        </div>
-                                                        <div class="chip chip-checkbox" tabindex="0" >
-                                                            <input type="radio" id="unit" value="3"name="unit" />
-                                                            <span >K3L</span>
-                                                        </div>
-                                                        <div class="chip chip-checkbox"  tabindex="0" >
-                                                            <input type="radio" id="unit" value="4" name="unit" />
-                                                            <span>TEKNIK</span>
-                                                        </div>
-                                                    </div>
-                                                <br>
-                                                <p>Status</p>
-                                                    <div class="chip-group" tabindex="-1">
-                                                        <div class="chip chip-checkbox"  tabindex="0">
-                                                            <input type="radio" id="status" value="Lengkap" name="status" />
-                                                            <span >Menunggu</span>
-                                                        </div>
-                                                        <div class="chip chip-checkbox"  tabindex="0">
-                                                            <input type="radio" id="status" value="Lengkap" name="status" />
-                                                            <span >Disetujui</span>
-                                                        </div>
-                                                        <div class="chip chip-checkbox"tabindex="0" >
-                                                            <input type="radio" id="status" value="Belum Lengkap" name="status" />
-                                                            <span >Ditolak</span>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" style='background-color:#1c5b68; color:white'class="btn btn-primary">Terapkan Filter</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
-                        <table id="example" class="table table-striped table-bordered table-hover" style="width:100%">
+                        <table id="example1" class="table table-striped table-bordered table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" id="select_all"></th>
@@ -259,6 +194,71 @@
                             </tbody>
                         </table>
                     </form>
+                    <!-- Modal Filter -->
+                    <div class="modal fade modal-md" id="modalFilter" tabindex="-1" aria-labelledby="modalKeterangan" aria-hidden="true">
+                        <div class="modal-dialog modal-keterangan modal-dialog-centered">
+                            <div class="modal-content">
+                                <form action="/filter-user" method="GET">
+                                    <div class="modal-header">
+                                        <h1>Filter Arsip</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Urutkan</p>
+                                            <div class="chip-group" tabindex="-1">
+                                                <div class="chip chip-checkbox" tabindex="0" >
+                                                    <input type="radio" id="sort" value="desc" name="sort" checked />
+                                                    <span>Terbaru</span>
+                                                </div>
+                                                <div class="chip chip-checkbox" tabindex="0" >
+                                                    <input type="radio" id="sort" value="asc" name="sort" />
+                                                    <span >Terlama</span>
+                                                </div>
+                                            </div>
+                                        <br>
+                                        <p>Bidang</p>
+                                            <div class="chip-group" tabindex="-1">
+                                                <div class="chip chip-checkbox"  tabindex="0" >
+                                                    <input type="radio" id="unit" value="1" name="unit" />
+                                                    <span >ADM & KEUANGAN</span>
+                                                </div>
+                                                <div class="chip chip-checkbox"  tabindex="0"  >
+                                                    <input type="radio" id="unit" value="2" name="unit" />
+                                                    <span >PERIZINAN PERTANAHAN</span>
+                                                </div>
+                                                <div class="chip chip-checkbox" tabindex="0" >
+                                                    <input type="radio" id="unit" value="3"name="unit" />
+                                                    <span >K3L</span>
+                                                </div>
+                                                <div class="chip chip-checkbox"  tabindex="0" >
+                                                    <input type="radio" id="unit" value="4" name="unit" />
+                                                    <span>TEKNIK</span>
+                                                </div>
+                                            </div>
+                                        <br>
+                                        <p>Status</p>
+                                            <div class="chip-group" tabindex="-1">
+                                                <div class="chip chip-checkbox"  tabindex="0">
+                                                    <input type="radio" id="status" value="Menunggu" name="status" />
+                                                    <span >Menunggu</span>
+                                                </div>
+                                                <div class="chip chip-checkbox"  tabindex="0">
+                                                    <input type="radio" id="status" value="Disetujui" name="status" />
+                                                    <span >Disetujui</span>
+                                                </div>
+                                                <div class="chip chip-checkbox"tabindex="0" >
+                                                    <input type="radio" id="status" value="Ditolak" name="status" />
+                                                    <span >Ditolak</span>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" style='background-color:#1c5b68; color:white'class="btn btn-primary">Terapkan Filter</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {{-- Delete Request --}}
@@ -287,7 +287,7 @@
                             
                         </div>
 
-                        <table id="example" class="table table-striped table-bordered table-hover" style="width:100%">
+                        <table id="example2" class="table table-striped table-bordered table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" id="select_all_delete"></th>

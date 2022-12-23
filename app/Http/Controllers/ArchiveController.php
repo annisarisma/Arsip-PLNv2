@@ -350,6 +350,22 @@ class ArchiveController extends Controller
     {
         $archive=Archive::findOrFail($id);
 
+        // Validate
+        $request->validate(
+            [
+                'archive_name' => 'required|regex:/^[\w-]*$/|unique:archives,archive_name,'. $id,
+                'category_id' => 'required|not_regex:/^(Pilih)$/i',
+                'description' => 'required'
+            ],
+            [
+                'archive_name.required' => 'Nama Arsip harus diisi',
+                'archive_name.unique' => 'Arsip dengan nama ini sudah ada',
+                'archive_name.regex' => 'Jangan gunakan simbol pada penulisan arsip',
+                'category_id.not_regex' => 'Kategori harus diisi',
+                'description.required' => 'Deskripsi harus diisi',
+            ]
+        );
+
         $archive->update([
             'unit_id' => $request->unit_id,
             'category_id' => $request->category_id,

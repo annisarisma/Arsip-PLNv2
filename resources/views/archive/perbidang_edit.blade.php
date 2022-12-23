@@ -3,7 +3,7 @@
 <div class="home-content">
     <div class="content-archiveCreate">
         <div class="content-header">
-            <a href="javascript:history.go(-1)" class="btn btn-main"><i class="fa-solid fa-angle-left"></i></a>
+            <a href="javascript:history.go(-1)" id="back" class="btn btn-main"><i class="fa-solid fa-angle-left"></i></a>
             <h5>Edit Arsip</h5>
         </div>
         <input hidden type="text" value="{{$archive->id}}" id="archive_id" name="archive_id" >

@@ -1879,3 +1879,19 @@ button {
         }
     }
 }
+
+// Carousel
+.modal{
+    .modal-content{
+        .modal-body{
+            .carousel {
+                img {
+                    height: 200px;
+                    object-fit: cover;
+                    border-radius: 12px;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}

@@ -6,14 +6,14 @@
             <a href="/category" class="btn btn-main"><i class="fa-solid fa-angle-left"></i></a>
             <h5>Edit Kategori</h5>
         </div>
-        <form class="row" action="/category/category-edit/{{$category->id}}" method="post" enctype="multipart/form-data">
+        <form class="row" id="form" action="/category/category-edit/{{$category->id}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row col-6">
 
                 <!-- Bidang -->
                 <div class="col-md-12 mb-3">
-                    <label class="form-label">Bidang</label>
-                    <select class="form-select"  name="unit_id">
+                    <label class="form-label required">Bidang</label>
+                    <select class="form-select" name="unit_id">
                         <option></option>
                         <option selected value="{{ $category->unit_id }}">{{ $category->Unit->unit_name }}</option>
                         @foreach ($unit as $item)
@@ -28,8 +28,13 @@
 
                 <!-- Nama Kategori -->
                 <div class="col-md-12 mb-3">
-                    <label class="form-label">Nama Kategori</label>
-                    <input value="{{$category->category_name}}" type="text" name="category_name" class="form-control">
+                    <label class="form-label required">Nama Kategori</label>
+                    <input value="{{$category->category_name}}" type="text" name="category_name" class="form-control form-input @error('category_name') is-invalid @enderror">
+                    @error('category_name')
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
             </div>

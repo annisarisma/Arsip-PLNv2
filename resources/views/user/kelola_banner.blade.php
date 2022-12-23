@@ -18,17 +18,13 @@
             <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                 <div class="content-row row">
 
-                    <form role="search" class="col-5">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    </form>
-
-                    <a class="btn btn-primary col-2" href="/user/manage-banner-create"><i class="fa-solid fa-layer-group icon"></i>Tambah Banner</a>
+                    <a class="btn btn-create btn-primary col-2" href="/user/manage-banner-create"><i class="fa-solid fa-layer-group icon"></i>Tambah Banner</a>
 
                     <button class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#ModalPratinjau"><i class="fa-solid fa-file-export"></i>Pratinjau Banner</button>
 
                 </div>
 
-                <table id="example" class="example table table-striped table-bordered table-hover table-banner" style="width:100%">
+                <table id="example1" class="example table table-striped table-bordered table-hover table-banner" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -128,15 +124,11 @@
             <div class="tab-pane fade" id="loginregist" role="tabpanel" aria-labelledby="loginregist-tab">
                 <div class="content-row row">
 
-                    <form role="search" class="col-5">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    </form>
-
-                    <a class="btn btn-primary col-2" href="/user/manage-banner-create"><i class="fa-solid fa-layer-group icon"></i>Tambah Banner</a>
+                    <a class="btn btn-create btn-primary col-2" href="/user/manage-banner-create"><i class="fa-solid fa-layer-group icon"></i>Tambah Banner</a>
 
                 </div>
 
-                <table id="example" class="example table table-striped table-bordered table-hover table-banner" style="width:100%">
+                <table id="example2" class="example table table-striped table-bordered table-hover table-banner" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>

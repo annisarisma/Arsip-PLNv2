@@ -42,6 +42,20 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate
+        $request->validate(
+            [
+                'type' => 'required|not_regex:/^(Pilih)$/i',
+                'title' => 'required',
+                'image' => 'required',
+            ],
+            [
+                'title.required' => 'Judul Banner harus diisi',
+                'type.not_regex' => 'Tipe Banner harus diisi',
+                'image.required' => 'Harus ada gambar yang diupload!',
+            ]
+        );
+
         if($request->hasFile("image")){
             $file=$request->file("image");
             $imageName=time().'_'.$file->getClientOriginalName();
@@ -93,6 +107,20 @@ class BannerController extends Controller
     public function update(Request $request, Banner $banner, $id)
     {
         $banner = Banner::find($id);
+
+        // Validate
+        $request->validate(
+            [
+                'type' => 'required|not_regex:/^(Pilih)$/i',
+                'title' => 'required',
+                'image' => 'required',
+            ],
+            [
+                'title.required' => 'Judul Banner harus diisi',
+                'type.not_regex' => 'Tipe Banner harus diisi',
+                'image.required' => 'Harus ada gambar yang diupload!',
+            ]
+        );
 
         if($request->hasFile("image")){
             $file=$request->file("image");
